@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+   <ItemGroup>
+    <PackageReference Include="HyperGraph.Core" Version="3.4.0" />
+    <PackageReference Include="HyperGraph.Extras" Version="3.4.0" />
+    </ItemGroup>
+</Project>
