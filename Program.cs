@@ -72,7 +72,7 @@ namespace BonetIDE
         ICharacterStore characterReadingStore;
         IGraph idsGraph;
         IBonetDictionary bonetDictionary;
-        IEnumerable<object> resultList;
+        IEnumerable<object> resultList = new List<object>();
         List<string> stack = new();
 
         private void LoadWikiData()
@@ -219,7 +219,7 @@ namespace BonetIDE
                     result.Append(str + separator);
                 }
             }
-            
+
             stack.Add(result.ToString().Trim());
             PrintStack();
 
