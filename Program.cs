@@ -23,7 +23,7 @@ namespace BonetIDE
             LoadWikiData();
             LoadIdsData();
             OpenBonetDictionary();
-            //PrintHelp();
+        //PrintHelp();
 
         loop:
             Console.Write("> ");
@@ -46,7 +46,13 @@ namespace BonetIDE
                             PrintStack();
                         break;
                     case "m":
-                        Merge(line);
+                        if (line[1] == ' ')
+                            Merge(line);
+                        if (line[1] == 's')
+                            MergeWithSpace(line);
+                        break;
+                    case "d":
+                        //Delete(line);
                         break;
                     case "h":
                         PrintHelp();
@@ -128,10 +134,6 @@ namespace BonetIDE
                 {
                     ComplexCharacterSearch searcher = new();
                     resultList = searcher.Search(idsGraph, true, parts);
-                    /*foreach (string str in searcher.Search(idsGraph, true, parts))
-                    {
-                        Console.WriteLine(str);
-                    }*/
                 }
                 PrintResultList();
             }
@@ -192,7 +194,7 @@ namespace BonetIDE
             }
         }
 
-        private bool Merge(string line)
+        private bool Merge(string line, string separator = "")
         {
             line = line.Substring(2);
             string[] parts = SplitOnSpaces(line);
@@ -216,17 +218,23 @@ namespace BonetIDE
                 int correctedPos = pos - 1;
                 if (correctedPos >= 0 && correctedPos < stack.Count)
                 {
-                    result.Append(stack.ElementAt(correctedPos));
+                    result.Append(stack.ElementAt(correctedPos) + separator);
                 }
                 else
                 {
                     return false;
                 }
             }
-            stack.Add(result.ToString());
+            stack.Add(result.ToString().Trim());
             PrintStack();
 
             return true;
+        }
+
+        private bool MergeWithSpace(string line)
+        {
+            line = line.Substring(1);
+            return Merge(line, " ");
         }
 
         private string[] SplitOnSpaces(string str)
