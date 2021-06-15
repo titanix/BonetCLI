@@ -198,33 +198,28 @@ namespace BonetIDE
         {
             line = line.Substring(2);
             string[] parts = SplitOnSpaces(line);
-            List<int> positions = new();
+            StringBuilder result = new();
 
             foreach (string str in parts)
             {
                 if (int.TryParse(str, out int value))
                 {
-                    positions.Add(value);
+                    value--;
+                    if (value >= 0 && value < stack.Count)
+                    {
+                        result.Append(stack.ElementAt(value) + separator);
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
-                    return false;
+                    result.Append(str + separator);
                 }
             }
-
-            StringBuilder result = new StringBuilder();
-            foreach (int pos in positions)
-            {
-                int correctedPos = pos - 1;
-                if (correctedPos >= 0 && correctedPos < stack.Count)
-                {
-                    result.Append(stack.ElementAt(correctedPos) + separator);
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            
             stack.Add(result.ToString().Trim());
             PrintStack();
 
