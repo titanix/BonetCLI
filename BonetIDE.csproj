@@ -4,8 +4,18 @@
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-   <ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HyperGraph.Core" Version="3.4.0" />
     <PackageReference Include="HyperGraph.Extras" Version="3.4.0" />
-    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data\ids.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\wiki.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
