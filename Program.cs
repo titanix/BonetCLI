@@ -182,6 +182,11 @@ namespace BonetIDE
                 }
                 PrintStack();
             }
+            else
+            {
+                stack.Add(line.Trim());
+                PrintStack();
+            }
         }
 
         private void PrintStack()
