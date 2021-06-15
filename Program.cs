@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+
 using Language.General;
 using Leger;
 using Leger.IO;
@@ -20,7 +23,7 @@ namespace BonetIDE
             LoadWikiData();
             LoadIdsData();
             OpenBonetDictionary();
-            PrintHelp();
+            //PrintHelp();
 
         loop:
             Console.Write("> ");
@@ -35,6 +38,15 @@ namespace BonetIDE
                         break;
                     case "a":
                         AddWord(line);
+                        break;
+                    case "p":
+                        if (line[1] == ' ')
+                            Push(line);
+                        if (line[1] == 's')
+                            PrintStack();
+                        break;
+                    case "m":
+                        Merge(line);
                         break;
                     case "h":
                         PrintHelp();
@@ -54,7 +66,8 @@ namespace BonetIDE
         ICharacterStore characterReadingStore;
         IGraph idsGraph;
         IBonetDictionary bonetDictionary;
-        List<object> resultList = new();
+        IEnumerable<object> resultList;
+        List<string> stack = new();
 
         private void LoadWikiData()
         {
@@ -106,23 +119,21 @@ namespace BonetIDE
         {
             try
             {
-                string[] parts = line.Substring(1).Split(new char[] { ' ', '　', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] parts = SplitOnSpaces(line.Substring(1));
                 if (parts.Length == 1)
                 {
-                    List<CharacterReading> result = characterReadingStore.SearchByReading(parts[0]);
-                    foreach (var r in result)
-                    {
-                        Console.WriteLine($"{r.Character} {r.Reading}");
-                    }
+                    resultList = characterReadingStore.SearchByReading(parts[0]);
                 }
                 else
                 {
                     ComplexCharacterSearch searcher = new();
-                    foreach (string str in searcher.Search(idsGraph, true, parts))
+                    resultList = searcher.Search(idsGraph, true, parts);
+                    /*foreach (string str in searcher.Search(idsGraph, true, parts))
                     {
                         Console.WriteLine(str);
-                    }
+                    }*/
                 }
+                PrintResultList();
             }
             catch
             { }
@@ -131,13 +142,10 @@ namespace BonetIDE
         private void AddWord(string line)
         {
             line = line.Substring(2);
-            string[] parts = line.Split(new char[] { ' ', '　', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = SplitOnSpaces(line);
 
             string nom = parts[0];
             string reading = line.Substring(nom.Length).Trim();
-
-            //Console.WriteLine(parts[0]);
-            //Console.WriteLine("debug: [" + reading + "]");
 
             CodePointIndexedString cpi = new(nom);
             if (cpi.Length == 1)
@@ -152,11 +160,78 @@ namespace BonetIDE
 
         private void PrintResultList()
         {
+            Console.WriteLine("Results list:");
             int i = 1;
             foreach (object obj in resultList)
             {
                 Console.WriteLine($"{i++}. {obj}");
             }
+        }
+
+        private void Push(string line)
+        {
+            line = line.Substring(2);
+            if (int.TryParse(line, out int value))
+            {
+                value--;
+                if (value < resultList.Count() && value >= 0)
+                {
+                    stack.Add(resultList.ToList().ElementAt(value).ToString());
+                }
+                PrintStack();
+            }
+        }
+
+        private void PrintStack()
+        {
+            Console.WriteLine("Stack content:");
+            int i = 1;
+            foreach (string str in stack)
+            {
+                Console.WriteLine($"{i++}. {str}");
+            }
+        }
+
+        private bool Merge(string line)
+        {
+            line = line.Substring(2);
+            string[] parts = SplitOnSpaces(line);
+            List<int> positions = new();
+
+            foreach (string str in parts)
+            {
+                if (int.TryParse(str, out int value))
+                {
+                    positions.Add(value);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            StringBuilder result = new StringBuilder();
+            foreach (int pos in positions)
+            {
+                int correctedPos = pos - 1;
+                if (correctedPos >= 0 && correctedPos < stack.Count)
+                {
+                    result.Append(stack.ElementAt(correctedPos));
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            stack.Add(result.ToString());
+            PrintStack();
+
+            return true;
+        }
+
+        private string[] SplitOnSpaces(string str)
+        {
+            return str.Split(new char[] { ' ', '　', ' ' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }
