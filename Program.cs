@@ -56,8 +56,16 @@ namespace BonetIDE
                             MergeWithSpace(line);
                         break;
                     case "c":
-                        string converted = charConverter.Convert(line.Substring(2));
-                        Push(converted);
+                        if (line[1] == ' ')
+                        {
+                            string converted = charConverter.Convert(line.Substring(2));
+                            Push(converted);
+                        }
+                        if (line[1] == 's')
+                        {
+                            stack = new();
+                            PrintStack();
+                        }
                         break;
                     case "d":
                         //Delete(line);

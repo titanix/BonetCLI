@@ -4,7 +4,7 @@
 
 ### [s]earch
 
-Search for entries using quoc ngu without diacritics or by composition of Chinese character components. Space in-between arguments can be either ASCII or Chinese space.
+Search for entries using quốc ngữ without diacritics or by composition of Chinese character components. Space in-between arguments can be either ASCII or Chinese space.
 
 #### s quoc_ngu_without_diacritics
 
@@ -129,6 +129,39 @@ Add a literal to the dictionary under edition.
 \> a 烏 ô
 
 No feedback is given on the operation.
+
+### [c]onvert 
+
+Convert a letter sequence into another and add the result to the stack. Used to add tone diacritic to syllable.
+
+\> c aa
+
+```
+Stack content:
+1. ă
+```
+
+\> c luân4
+```
+Stack content:
+1. luận
+```
+
+### [c]lear [s]tack
+
+Empty the stack.
+
+```
+Stack content:
+1. a
+2. b
+```
+
+\> cs
+
+```
+Stack content:
+```
 
 ### [q]uit
 
