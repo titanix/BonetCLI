@@ -170,3 +170,7 @@ Quit the application.
 ### [h]elp
 
 Display help.
+
+### [h]elp [t]ones
+
+Get information about tone number and diacritics.

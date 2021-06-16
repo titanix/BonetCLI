@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using Language.General;
 using Leger;
 using Leger.IO;
 
@@ -21,7 +20,7 @@ namespace BonetIDE
         public void Run()
         {
             LoadWikiData();
-            //LoadIdsData();
+            LoadIdsData();
             OpenBonetDictionary();
             //PrintHelp();
 
@@ -54,7 +53,12 @@ namespace BonetIDE
                         //Delete(line);
                         break;
                     case "h":
+                        if(line.Length > 1 && line[1] == 't')
+                        {
+                            PrintToneHelp();
+                        }else{
                         PrintHelp();
+                        }
                         break;
                     case "m":
                         if (line[1] == ' ')
@@ -257,6 +261,12 @@ namespace BonetIDE
         private bool ValidStackReference(int value)
         {
             return value >= 0 && value < stack.Count;
+        }
+
+        private void PrintToneHelp()
+        {
+            Console.WriteLine("1 o   2 ò   3 ó");
+            Console.WriteLine("4 ọ   5 ỏ   6 õ");
         }
     }
 }
