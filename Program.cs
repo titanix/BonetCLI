@@ -35,24 +35,8 @@ namespace BonetIDE
             {
                 switch (line[0].ToString())
                 {
-                    case "s":
-                        Search(line);
-                        break;
                     case "a":
                         AddWord(line);
-                        break;
-                    case "p":
-                        // TODO: push _ r & push _ n
-                        if (line[1] == ' ')
-                            Push(line.Substring(2));
-                        if (line[1] == 's')
-                            PrintStack();
-                        break;
-                    case "m":
-                        if (line[1] == ' ')
-                            Merge(line);
-                        if (line[1] == 's')
-                            MergeWithSpace(line);
                         break;
                     case "c":
                         if (line[1] == ' ')
@@ -71,6 +55,22 @@ namespace BonetIDE
                         break;
                     case "h":
                         PrintHelp();
+                        break;
+                    case "m":
+                        if (line[1] == ' ')
+                            Merge(line);
+                        if (line[1] == 's')
+                            MergeWithSpace(line);
+                        break;
+                    case "p":
+                        // TODO: push _ r & push _ n
+                        if (line[1] == ' ')
+                            Push(line.Substring(2));
+                        if (line[1] == 's')
+                            PrintStack();
+                        break;
+                    case "s":
+                        Search(line);
                         break;
                     case "q":
                         goto end;
