@@ -23,7 +23,9 @@ namespace BonetIDE
             LoadWikiData();
             LoadIdsData();
             OpenBonetDictionary();
-        //PrintHelp();
+            //PrintHelp();
+
+            CharacterConverter charConverter = new();
 
         loop:
             Console.Write("> ");
@@ -38,10 +40,12 @@ namespace BonetIDE
                         break;
                     case "a":
                         AddWord(line);
+                        // TODO: add entry to the dictionary by stack reference
                         break;
                     case "p":
+                        // TODO: push _ r & push _ n
                         if (line[1] == ' ')
-                            Push(line);
+                            Push(line.Substring(2));
                         if (line[1] == 's')
                             PrintStack();
                         break;
@@ -50,6 +54,10 @@ namespace BonetIDE
                             Merge(line);
                         if (line[1] == 's')
                             MergeWithSpace(line);
+                        break;
+                    case "c":
+                        string converted = charConverter.Convert(line.Substring(2));
+                        Push(converted);
                         break;
                     case "d":
                         //Delete(line);
@@ -170,10 +178,9 @@ namespace BonetIDE
             }
         }
 
-        private void Push(string line)
+        private void Push(string content)
         {
-            line = line.Substring(2);
-            if (int.TryParse(line, out int value))
+            if (int.TryParse(content, out int value))
             {
                 value--;
                 if (value < resultList.Count() && value >= 0)
@@ -184,7 +191,7 @@ namespace BonetIDE
             }
             else
             {
-                stack.Add(line.Trim());
+                stack.Add(content.Trim());
                 PrintStack();
             }
         }
