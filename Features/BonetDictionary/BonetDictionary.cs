@@ -1,11 +1,14 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace BonetIDE
 {
     class BonetDictionary : IBonetDictionary, IDisposable
     {
         StreamWriter file;
+        Regex regex = new("");
+        VietnameseSyllableParser parser = new();
 
         internal BonetDictionary(string path)
         {
@@ -17,6 +20,47 @@ namespace BonetIDE
         public void AddCompound(string word, string reading)
         {
             file.WriteLine($"{word} {reading}");
+        }
+
+        public string AddContent(string content)
+        {
+            var result = Validate(content);
+            if (result.Success)
+            {
+                file.WriteLine(content);
+                return "Content added to the dictionary.";
+            }
+            else
+            {
+                return result.ErrorMessage;
+            }
+        }
+
+        /*
+         * Input must be of the form:
+         * quốc ngữ 漢字
+         */
+        private (bool Success, string ErrorMessage) Validate(string input)
+        {
+            input = input.Trim();
+
+            if (string.IsNullOrEmpty(input))
+                return (false, "Empty string.");
+
+            string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            
+            if(parts.Length <= 1)
+            return (false, "Missing data.");
+
+            foreach (string part in parts.DropLast(1))
+            {
+                if (parser.Parse(part) == null)
+                    return (false, "Non conforming quốc ngữ syllable.");
+            }
+
+            // TODO : validate han tữ part
+
+            return (true, "");
         }
 
         public void AddHeadword(string character, string reading)

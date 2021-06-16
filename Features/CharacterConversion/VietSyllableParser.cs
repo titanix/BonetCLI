@@ -257,6 +257,9 @@ namespace BonetIDE
             Regex regex = new Regex(regexString);
             Match matchResult = regex.Match(str);
 
+            if (!matchResult.Success)
+                return null;
+
             SinoSyllable result = new SinoSyllable();
 
             result.Initial = "";

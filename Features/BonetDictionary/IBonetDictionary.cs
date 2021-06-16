@@ -4,5 +4,7 @@ namespace BonetIDE
     {
         void AddHeadword(string character, string reading);
         void AddCompound(string word, string reading);
+
+        string AddContent(string content);
     }
 }

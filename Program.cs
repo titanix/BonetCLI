@@ -21,7 +21,7 @@ namespace BonetIDE
         public void Run()
         {
             LoadWikiData();
-            LoadIdsData();
+            //LoadIdsData();
             OpenBonetDictionary();
             //PrintHelp();
 
@@ -40,7 +40,6 @@ namespace BonetIDE
                         break;
                     case "a":
                         AddWord(line);
-                        // TODO: add entry to the dictionary by stack reference
                         break;
                     case "p":
                         // TODO: push _ r & push _ n
@@ -160,20 +159,18 @@ namespace BonetIDE
         private void AddWord(string line)
         {
             line = line.Substring(2);
-            string[] parts = SplitOnSpaces(line);
+            string content = line;
 
-            string nom = parts[0];
-            string reading = line.Substring(nom.Length).Trim();
+            if (int.TryParse(line[0].ToString(), out int value))
+            {
+                if (ValidStackReference(value))
+                {
+                    content = stack[value];
+                }
+            }
 
-            CodePointIndexedString cpi = new(nom);
-            if (cpi.Length == 1)
-            {
-                bonetDictionary.AddHeadword(nom, reading);
-            }
-            else
-            {
-                bonetDictionary.AddCompound(nom, reading);
-            }
+            string message = bonetDictionary.AddContent(content);
+            Console.WriteLine(message);
         }
 
         private void PrintResultList()
@@ -225,7 +222,7 @@ namespace BonetIDE
                 if (int.TryParse(str, out int value))
                 {
                     value--;
-                    if (value >= 0 && value < stack.Count)
+                    if (ValidStackReference(value))
                     {
                         result.Append(stack.ElementAt(value) + separator);
                     }
@@ -255,6 +252,11 @@ namespace BonetIDE
         private string[] SplitOnSpaces(string str)
         {
             return str.Split(new char[] { ' ', '　', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private bool ValidStackReference(int value)
+        {
+            return value >= 0 && value < stack.Count;
         }
     }
 }
