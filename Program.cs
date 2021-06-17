@@ -24,7 +24,6 @@ namespace BonetIDE
             OpenBonetDictionary();
             //PrintHelp();
 
-            CharacterConverter charConverter = new();
             IContext context = new Context(
                 characterReadingStore,
                 idsGraph,
@@ -50,8 +49,8 @@ namespace BonetIDE
                         ac.Execute(context, commandArgs);
                         break;
                     case "c":
-                        string converted = charConverter.Convert(line.Substring(2));
-                        Push(converted);
+                        ConvertCommand cc = new();
+                        cc.Execute(context, commandArgs);
                         break;
                     case "cs":
                         ClearStackCommand csc = new();
@@ -62,23 +61,29 @@ namespace BonetIDE
                         dc.Execute(context, commandArgs);
                         break;
                     case "h":
-                        PrintHelp();
+                        HelpCommand hc = new();
+                        hc.Execute(context, commandArgs);
                         break;
                     case "ht":
-                        PrintToneHelp();
+                        HelpToneCommand htc = new();
+                        htc.Execute(context, commandArgs);
                         break;
                     case "m":
-                        Merge(line);
+                        MergeCommand mc = new();
+                        mc.Execute(context, commandArgs);
                         break;
                     case "ms":
-                        MergeWithSpace(line);
+                        MergeCommand msc = new(" ");
+                        msc.Execute(context, commandArgs);
                         break;
                     case "p":
                         // TODO: push _ r & push _ n
-                        Push(line.Substring(2));
+                        PushCommand pc = new();
+                        pc.Execute(context, commandArgs);
                         break;
                     case "ps":
-                        stack.Print();
+                        PrintStackCommand psc = new();
+                        psc.Execute(context, commandArgs);
                         break;
                     case "s":
                         Search(line);
@@ -87,21 +92,20 @@ namespace BonetIDE
                         SearchNet(line);
                         break;
                     case "q":
-                        goto end;
+                        QuitCommand qc = new();
+                        qc.Execute(context, commandArgs);
+                        break;
                     default:
                         break;
                 }
             }
             goto loop;
-
-        end:
-            ;
         }
 
         ICharacterStore characterReadingStore;
         IGraph idsGraph;
         IBonetDictionary bonetDictionary;
-        IEnumerable<object> resultList = new List<object>();
+        List<object> resultList = new List<object>();
         List<string> stack = new();
 
         private bool SecondCharEqual(string str, char c)
@@ -134,27 +138,6 @@ namespace BonetIDE
             bonetDictionary = new BonetDictionary(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
         }
 
-        private void PrintHelp()
-        {
-            Console.WriteLine("** Available commands **");
-            Console.WriteLine();
-
-            Console.WriteLine("Search");
-            Console.WriteLine("s quoc_ngu_without_diacritics");
-            Console.WriteLine("-> s boi");
-            Console.WriteLine("s sinogram_1 ... sinogram_N");
-            Console.WriteLine("-> s 不 皿");
-            Console.WriteLine();
-
-            Console.WriteLine("Add Content");
-            Console.WriteLine("a nom reading");
-            Console.WriteLine("-> a 盃 bôi");
-            Console.WriteLine();
-
-            Console.WriteLine("Help");
-            Console.WriteLine("h");
-        }
-
         private void Search(string line)
         {
             try
@@ -162,83 +145,25 @@ namespace BonetIDE
                 string[] parts = SplitOnSpaces(line.Substring(1));
                 if (parts.Length == 1)
                 {
-                    resultList = characterReadingStore.SearchByReading(parts[0]);
+                    resultList.Clear();
+                    resultList.AddRange(characterReadingStore.SearchByReading(parts[0]));
                 }
                 else
                 {
                     ComplexCharacterSearch searcher = new();
-                    resultList = searcher.Search(idsGraph, true, parts);
+                    resultList.Clear();
+                    resultList.AddRange(searcher.Search(idsGraph, true, parts));
                 }
-                PrintResultList();
+
+                Console.WriteLine("Results list:");
+                int i = 1;
+                foreach (object obj in resultList)
+                {
+                    Console.WriteLine($"{i++}. {obj}");
+                }
             }
             catch
             { }
-        }
-
-        private void PrintResultList()
-        {
-            Console.WriteLine("Results list:");
-            int i = 1;
-            foreach (object obj in resultList)
-            {
-                Console.WriteLine($"{i++}. {obj}");
-            }
-        }
-
-        private void Push(string content)
-        {
-            if (int.TryParse(content, out int value))
-            {
-                value--;
-                if (value < resultList.Count() && value >= 0)
-                {
-                    stack.Add(resultList.ToList().ElementAt(value).ToString());
-                }
-                stack.Print();
-            }
-            else
-            {
-                stack.Add(content.Trim());
-                stack.Print();
-            }
-        }
-
-        private bool Merge(string line, string separator = "")
-        {
-            line = line.Substring(2);
-            string[] parts = SplitOnSpaces(line);
-            StringBuilder result = new();
-
-            foreach (string str in parts)
-            {
-                if (int.TryParse(str, out int value))
-                {
-                    value--;
-                    if (ValidStackReference(value))
-                    {
-                        result.Append(stack.ElementAt(value) + separator);
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    result.Append(str + separator);
-                }
-            }
-
-            stack.Add(result.ToString().Trim());
-            stack.Print();
-
-            return true;
-        }
-
-        private bool MergeWithSpace(string line)
-        {
-            line = line.Substring(1);
-            return Merge(line, " ");
         }
 
         private string[] SplitOnSpaces(string str)
@@ -249,12 +174,6 @@ namespace BonetIDE
         private bool ValidStackReference(int value)
         {
             return value >= 0 && value < stack.Count;
-        }
-
-        private void PrintToneHelp()
-        {
-            Console.WriteLine("1 o   2 ò   3 ó");
-            Console.WriteLine("4 ọ   5 ỏ   6 õ");
         }
 
         private void SearchNet(string line)

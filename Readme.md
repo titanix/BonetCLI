@@ -163,6 +163,26 @@ Stack content:
 Stack content:
 ```
 
+### [d]elete
+
+Delete one or more items from the stack.
+
+```
+Stack content:
+1. a
+2. b
+3. c
+4. d
+```
+
+\> d 2 4
+
+```
+Stack content:
+1. a
+2. c
+```
+
 ### [q]uit
 
 Quit the application.

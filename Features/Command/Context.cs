@@ -9,7 +9,7 @@ namespace BonetIDE
         internal Context(ICharacterStore characterReadingStore,
         IGraph idsGraph,
         IBonetDictionary bonetDictionary,
-        IEnumerable<object> resultList,
+        List<object> resultList,
         List<string> stack)
         {
             this.characterReadingStore = characterReadingStore;
@@ -22,7 +22,7 @@ namespace BonetIDE
         public ICharacterStore characterReadingStore { get; private set; }
         public IGraph idsGraph { get; }
         public IBonetDictionary bonetDictionary { get; }
-        public IEnumerable<object> resultList { get; }
+        public List<object> resultList { get; }
         public List<string> stack { get; }
     }
 }

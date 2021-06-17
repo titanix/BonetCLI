@@ -9,7 +9,7 @@ namespace BonetIDE
         ICharacterStore characterReadingStore { get; }
         IGraph idsGraph { get; }
         IBonetDictionary bonetDictionary { get; }
-        IEnumerable<object> resultList { get; }
+        List<object> resultList { get; }
         List<string> stack { get; }
     }
 }
