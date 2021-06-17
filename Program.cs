@@ -25,6 +25,13 @@ namespace BonetIDE
             //PrintHelp();
 
             CharacterConverter charConverter = new();
+            IContext context = new Context(
+                characterReadingStore,
+                idsGraph,
+                bonetDictionary,
+                resultList,
+                stack
+            );
 
         loop:
             Console.Write("> ");
@@ -39,15 +46,16 @@ namespace BonetIDE
                 switch (command.Value)
                 {
                     case "a":
-                        AddWord(line);
+                        AddCommand ac = new();
+                        ac.Execute(context, commandArgs);
                         break;
                     case "c":
                         string converted = charConverter.Convert(line.Substring(2));
                         Push(converted);
                         break;
                     case "cs":
-                        stack = new();
-                        PrintStack();
+                        ClearStackCommand csc = new();
+                        csc.Execute(context, commandArgs);
                         break;
                     case "d":
                         //Delete(line);
@@ -69,7 +77,7 @@ namespace BonetIDE
                         Push(line.Substring(2));
                         break;
                     case "ps":
-                        PrintStack();
+                        stack.Print();
                         break;
                     case "s":
                         Search(line);
@@ -166,23 +174,6 @@ namespace BonetIDE
             { }
         }
 
-        private void AddWord(string line)
-        {
-            line = line.Substring(2);
-            string content = line;
-
-            if (int.TryParse(line[0].ToString(), out int value))
-            {
-                if (ValidStackReference(value))
-                {
-                    content = stack[value];
-                }
-            }
-
-            string message = bonetDictionary.AddContent(content);
-            Console.WriteLine(message);
-        }
-
         private void PrintResultList()
         {
             Console.WriteLine("Results list:");
@@ -202,22 +193,12 @@ namespace BonetIDE
                 {
                     stack.Add(resultList.ToList().ElementAt(value).ToString());
                 }
-                PrintStack();
+                stack.Print();
             }
             else
             {
                 stack.Add(content.Trim());
-                PrintStack();
-            }
-        }
-
-        private void PrintStack()
-        {
-            Console.WriteLine("Stack content:");
-            int i = 1;
-            foreach (string str in stack)
-            {
-                Console.WriteLine($"{i++}. {str}");
+                stack.Print();
             }
         }
 
@@ -248,7 +229,7 @@ namespace BonetIDE
             }
 
             stack.Add(result.ToString().Trim());
-            PrintStack();
+            stack.Print();
 
             return true;
         }

@@ -1,6 +1,6 @@
 namespace BonetIDE
 {
-    struct IntArgument : ICommandArgument
+    class IntArgument : ICommandArgument
     {
         int argument;
 
