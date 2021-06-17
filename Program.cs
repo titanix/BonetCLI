@@ -29,52 +29,53 @@ namespace BonetIDE
         loop:
             Console.Write("> ");
             string line = Console.ReadLine();
+            line = NormalizeSpaces(line);
+            List<ICommandArgument> commandArgs = ParseCommand(line);
 
-            if (line.Length > 0)
+            if (commandArgs.Count > 0 && commandArgs[0] is StringArgument)
             {
-                switch (line[0].ToString())
+                StringArgument command = commandArgs[0] as StringArgument;
+
+                switch (command.Value)
                 {
                     case "a":
                         AddWord(line);
                         break;
                     case "c":
-                        if (line[1] == ' ')
-                        {
-                            string converted = charConverter.Convert(line.Substring(2));
-                            Push(converted);
-                        }
-                        if (line[1] == 's')
-                        {
-                            stack = new();
-                            PrintStack();
-                        }
+                        string converted = charConverter.Convert(line.Substring(2));
+                        Push(converted);
+                        break;
+                    case "cs":
+                        stack = new();
+                        PrintStack();
                         break;
                     case "d":
                         //Delete(line);
                         break;
                     case "h":
-                        if(line.Length > 1 && line[1] == 't')
-                        {
-                            PrintToneHelp();
-                        }else{
                         PrintHelp();
-                        }
+                        break;
+                    case "ht":
+                        PrintToneHelp();
                         break;
                     case "m":
-                        if (line[1] == ' ')
-                            Merge(line);
-                        if (line[1] == 's')
-                            MergeWithSpace(line);
+                        Merge(line);
+                        break;
+                    case "ms":
+                        MergeWithSpace(line);
                         break;
                     case "p":
                         // TODO: push _ r & push _ n
-                        if (line[1] == ' ')
-                            Push(line.Substring(2));
-                        if (line[1] == 's')
-                            PrintStack();
+                        Push(line.Substring(2));
+                        break;
+                    case "ps":
+                        PrintStack();
                         break;
                     case "s":
                         Search(line);
+                        break;
+                    case "sn":
+                        SearchNet(line);
                         break;
                     case "q":
                         goto end;
@@ -93,6 +94,11 @@ namespace BonetIDE
         IBonetDictionary bonetDictionary;
         IEnumerable<object> resultList = new List<object>();
         List<string> stack = new();
+
+        private bool SecondCharEqual(string str, char c)
+        {
+            return str.Length > 1 && str[1] == c;
+        }
 
         private void LoadWikiData()
         {
@@ -267,6 +273,55 @@ namespace BonetIDE
         {
             Console.WriteLine("1 o   2 ò   3 ó");
             Console.WriteLine("4 ọ   5 ỏ   6 õ");
+        }
+
+        private void SearchNet(string line)
+        {
+            line = line.Substring(3);
+            string url = "https://chunom.org/pages/?search=";
+            string search = line;
+
+            if (int.TryParse(line, out int value))
+            {
+                if (ValidStackReference(value))
+                {
+                    search = stack[value];
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            System.Diagnostics.Process.Start(@"/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser", url + search);
+        }
+
+        private string NormalizeSpaces(string str)
+        {
+            return str.Replace("　", " ") // Chinese space
+                .Replace("  ", " ") // double space by a single space
+                .Replace("  ", " ") // multiple times to remove potential multiple spaces (up to three)
+                .Replace("  ", " ");
+        }
+
+        private List<ICommandArgument> ParseCommand(string line)
+        {
+            string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            List<ICommandArgument> result = new();
+
+            foreach (string part in parts)
+            {
+                if (int.TryParse(part, out int value))
+                {
+                    result.Add(new IntArgument(value));
+                }
+                else
+                {
+                    result.Add(new StringArgument(part));
+                }
+            }
+
+            return result;
         }
     }
 }

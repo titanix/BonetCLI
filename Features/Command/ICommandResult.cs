@@ -1,0 +1,6 @@
+namespace BonetIDE
+{
+    interface ICommandResult
+    {
+    }
+}
