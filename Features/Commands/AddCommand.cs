@@ -11,6 +11,9 @@ namespace BonetIDE
             List<ICommandArgument> args = arguments.Skip(1).ToList();
             string content = "";
 
+            if (args.Count == 0)
+                return new CommandResult(false);
+
             if (args[0] is IntArgument)
             {
                 int index = (args[0] as IntArgument).Value - 1;
