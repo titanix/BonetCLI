@@ -63,13 +63,38 @@ Stack content:
 
 #### p string_literal
 
-\> p A
+\> p A B
 ```
 Stack content:
-1. A
+1. A B
 ```
 
 Note: spaces are ignored and the whole line except command name is treated as the literal to add to the stack.
+
+
+### [p]ush [s]plit
+
+Push multiple values on the stack either from a list result or literals. Content of the list result or the list of literals are split on spaces before adding resulting elements to the stack.
+
+```
+Results list:
+1. 惡 ố
+```
+
+\> ps 1
+```
+Stack content:
+1. 惡
+2. ố
+```
+
+\> ps a b
+```
+Stack content:
+1. a
+2. b
+```
+
 
 ### [m]erge stack entries
 

@@ -40,7 +40,8 @@ namespace BonetIDE
                 ["m"] = new MergeCommand(),
                 ["ms"] = new MergeCommand(" "),
                 ["p"] = new PushCommand(),
-                ["ps"] = new PrintStackCommand(),
+                ["ps"] = new PushSplitCommand(),
+                ["vs"] = new ViewStackCommand(),
                 ["s"] = new SearchCommand(),
                 ["q"] = new QuitCommand(),
             };

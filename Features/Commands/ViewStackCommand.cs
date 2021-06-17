@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace BonetIDE
 {
-    class PrintStackCommand : ICommand
+    class ViewStackCommand : ICommand
     {
         public ICommandResult Execute(IContext context, List<ICommandArgument> arguments)
         {
