@@ -20,7 +20,6 @@ namespace BonetIDE
             LoadWikiData();
             LoadIdsData();
             OpenBonetDictionary();
-            //PrintHelp();
 
             IContext context = new Context(
                 characterReadingStore,
@@ -29,6 +28,22 @@ namespace BonetIDE
                 resultList,
                 stack
             );
+
+            Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>()
+            {
+                ["a"] = new AddCommand(),
+                ["c"] = new ConvertCommand(),
+                ["cs"] = new ClearStackCommand(),
+                ["d"] = new DeleteCommand(),
+                ["h"] = new HelpCommand(),
+                ["ht"] = new HelpToneCommand(),
+                ["m"] = new MergeCommand(),
+                ["ms"] = new MergeCommand(" "),
+                ["p"] = new PushCommand(),
+                ["ps"] = new PrintStackCommand(),
+                ["s"] = new SearchCommand(),
+                ["q"] = new QuitCommand(),
+            };
 
         loop:
             Console.Write("> ");
@@ -40,61 +55,9 @@ namespace BonetIDE
             {
                 StringArgument command = commandArgs[0] as StringArgument;
 
-                switch (command.Value)
+                if (commands.ContainsKey(command.Value))
                 {
-                    case "a":
-                        AddCommand ac = new();
-                        ac.Execute(context, commandArgs);
-                        break;
-                    case "c":
-                        ConvertCommand cc = new();
-                        cc.Execute(context, commandArgs);
-                        break;
-                    case "cs":
-                        ClearStackCommand csc = new();
-                        csc.Execute(context, commandArgs);
-                        break;
-                    case "d":
-                        DeleteCommand dc = new();
-                        dc.Execute(context, commandArgs);
-                        break;
-                    case "h":
-                        HelpCommand hc = new();
-                        hc.Execute(context, commandArgs);
-                        break;
-                    case "ht":
-                        HelpToneCommand htc = new();
-                        htc.Execute(context, commandArgs);
-                        break;
-                    case "m":
-                        MergeCommand mc = new();
-                        mc.Execute(context, commandArgs);
-                        break;
-                    case "ms":
-                        MergeCommand msc = new(" ");
-                        msc.Execute(context, commandArgs);
-                        break;
-                    case "p":
-                        // TODO: push _ r & push _ n
-                        PushCommand pc = new();
-                        pc.Execute(context, commandArgs);
-                        break;
-                    case "ps":
-                        PrintStackCommand psc = new();
-                        psc.Execute(context, commandArgs);
-                        break;
-                    case "s":
-                        Search(line);
-                        break;
-                    case "sn":
-                        SearchNet(line);
-                        break;
-                    case "q":
-                        QuitCommand qc = new();
-                        qc.Execute(context, commandArgs);
-                        break;
-                    default:
-                        break;
+                    commands[command.Value].Execute(context, commandArgs);
                 }
             }
             goto loop;
@@ -105,11 +68,6 @@ namespace BonetIDE
         IBonetDictionary bonetDictionary;
         List<object> resultList = new List<object>();
         List<string> stack = new();
-
-        private bool SecondCharEqual(string str, char c)
-        {
-            return str.Length > 1 && str[1] == c;
-        }
 
         private void LoadWikiData()
         {
@@ -136,44 +94,6 @@ namespace BonetIDE
             bonetDictionary = new BonetDictionary(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
         }
 
-        private void Search(string line)
-        {
-            try
-            {
-                string[] parts = SplitOnSpaces(line.Substring(1));
-                if (parts.Length == 1)
-                {
-                    resultList.Clear();
-                    resultList.AddRange(characterReadingStore.SearchByReading(parts[0]));
-                }
-                else
-                {
-                    ComplexCharacterSearch searcher = new();
-                    resultList.Clear();
-                    resultList.AddRange(searcher.Search(idsGraph, true, parts));
-                }
-
-                Console.WriteLine("Results list:");
-                int i = 1;
-                foreach (object obj in resultList)
-                {
-                    Console.WriteLine($"{i++}. {obj}");
-                }
-            }
-            catch
-            { }
-        }
-
-        private string[] SplitOnSpaces(string str)
-        {
-            return str.Split(new char[] { ' ', '　', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-        }
-
-        private bool ValidStackReference(int value)
-        {
-            return value >= 0 && value < stack.Count;
-        }
-
         private void SearchNet(string line)
         {
             line = line.Substring(3);
@@ -182,7 +102,7 @@ namespace BonetIDE
 
             if (int.TryParse(line, out int value))
             {
-                if (ValidStackReference(value))
+                if (stack.IsValidStackReference(value))
                 {
                     search = stack[value];
                 }
