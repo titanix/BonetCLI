@@ -58,7 +58,8 @@ namespace BonetIDE
                         csc.Execute(context, commandArgs);
                         break;
                     case "d":
-                        //Delete(line);
+                        DeleteCommand dc = new();
+                        dc.Execute(context, commandArgs);
                         break;
                     case "h":
                         PrintHelp();
