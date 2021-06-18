@@ -62,6 +62,14 @@ namespace BonetIDE
                 {
                     commands[command.Value].Execute(context, commandArgs);
                 }
+                else
+                {
+                    if (command.Value[0] >= '\u2E80')
+                    {
+                        commandArgs.Insert(0, new StringArgument("p"));
+                        commands["p"].Execute(context, commandArgs);
+                    }
+                }
             }
             goto loop;
         }
