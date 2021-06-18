@@ -23,7 +23,6 @@ namespace BonetIDE
             for (int i = 0; i < predecessorsLists.Length; i++)
             {
                 predecessorsLists[i] = 
-                    //inputVertices[i].Predecessors(composeRelationship)
                     GetPredecessors(graph, inputVertices[i], composeRelationship)
                     .Where(v => IsKanji(v.ToString())).ToList();
                 if (includeSelf)
@@ -40,7 +39,6 @@ namespace BonetIDE
                 {
                     HashSet<string> temp = new HashSet<string>(
                         GetSuccessors(graph, v, composeRelationship)
-                        //v.Successors(composeRelationship)
                         .Select(a => a.ToString())
                         );
                     resultSet = resultSet.Union(temp).ToList();

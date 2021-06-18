@@ -71,6 +71,16 @@ Stack content:
 
 Note: spaces are ignored and the whole line except command name is treated as the literal to add to the stack.
 
+#### Implicit push
+
+If no command is used and a character superior or equal to U+2E80 is present on the input line, the content of the line is added to the stack.
+
+\> 為
+
+```
+Stack content:
+1. 為
+```
 
 ### [p]ush [s]plit
 
