@@ -17,7 +17,9 @@ namespace BonetIDE
 
         public void Run()
         {
-            LoadWikiData();
+            ICharacterStore wiki = LoadWikiData();
+            ICharacterStore bonet = LoadBonetData();
+            characterReadingStore = new CombinedCharacterStore(wiki, bonet);
             LoadIdsData();
             OpenBonetDictionary();
 
@@ -70,14 +72,28 @@ namespace BonetIDE
         List<object> resultList = new List<object>();
         List<string> stack = new();
 
-        private void LoadWikiData()
+        private ICharacterStore LoadWikiData()
         {
             Console.WriteLine("Loading Wiktionary character reading data.");
 
             WiktionaryDataLoader wikiData = new();
-            characterReadingStore = wikiData.LoadWiktionaryFile(Path.Combine(Environment.CurrentDirectory, "data/wiki.txt"));
+            ICharacterStore result = characterReadingStore = wikiData.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/wiki.txt"));
 
             Console.WriteLine("Done.");
+
+            return result;
+        }
+
+        private ICharacterStore LoadBonetData()
+        {
+            Console.WriteLine("Loading Bonet character reading data.");
+
+            BonetDictionaryLoader bonetData = new();
+            ICharacterStore result = characterReadingStore = bonetData.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
+
+            Console.WriteLine("Done.");
+
+            return result;
         }
 
         private void LoadIdsData()

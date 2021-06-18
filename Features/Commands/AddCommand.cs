@@ -32,6 +32,12 @@ namespace BonetIDE
             }
 
             string message = context.bonetDictionary.AddContent(content);
+
+            foreach (CharacterReading cr in BonetDictionaryLoader.GetCharacterReadings(content))
+            {
+                context.characterReadingStore.AddCharacter(cr.Character, cr.Reading);
+            }
+
             Console.WriteLine(message);
 
             return new CommandResult(true);

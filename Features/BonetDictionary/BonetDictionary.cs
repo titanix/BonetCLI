@@ -24,6 +24,9 @@ namespace BonetIDE
 
         public string AddContent(string content)
         {
+            file.WriteLine(content);
+            return "Content added.";
+            /*
             var result = Validate(content);
             if (result.Success)
             {
@@ -34,6 +37,7 @@ namespace BonetIDE
             {
                 return result.ErrorMessage;
             }
+            */
         }
 
         /*

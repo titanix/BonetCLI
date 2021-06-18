@@ -12,6 +12,7 @@ namespace BonetIDE
             ["oo"] = "ơ",
             ["uu"] = "ư",
             ["aa"] = "ă",
+            ["dd"] = "đ",
         };
 
         internal string Convert(string str)
@@ -59,7 +60,11 @@ namespace BonetIDE
                     str = str.Normalize(NormalizationForm.FormC);
 
                     VietnameseSyllableParser parser = new();
+                    
                     var syllable = parser.Parse(str);
+                    if (syllable == null)
+                        return str;
+
                     syllable.Nucleus = syllable.Nucleus + diacritic;
 
                     return $"{syllable.Initial}{syllable.Medial}{syllable.Nucleus}{syllable.Coda}";

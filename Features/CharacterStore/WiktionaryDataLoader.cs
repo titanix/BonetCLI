@@ -1,15 +1,12 @@
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
 using Language.General;
 
 namespace BonetIDE
 {
-    class WiktionaryDataLoader
+    class WiktionaryDataLoader : ICharacterStoreLoader
     {
-        internal ICharacterStore LoadWiktionaryFile(string path)
+        public ICharacterStore LoadFile(string path)
         {
             CharacterStore result = new();
 
@@ -22,7 +19,7 @@ namespace BonetIDE
                 for (int i = 0; i < hannom.Length; i++)
                 {
                     string @char = hannom.AtIndex(i);
-                    result.AddCharacter(hannom: @char, reading:quocngu[i]);
+                    result.AddCharacter(hannom: @char, reading: quocngu[i]);
                 }
             }
 
