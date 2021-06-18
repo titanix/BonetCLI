@@ -40,6 +40,7 @@ namespace BonetIDE
                 ["h"] = new HelpCommand(),
                 ["ht"] = new HelpToneCommand(),
                 ["m"] = new MergeCommand(),
+                ["mm"] = new MergeMagicCommand(),
                 ["ms"] = new MergeCommand(" "),
                 ["p"] = new PushCommand(),
                 ["ps"] = new PushSplitCommand(),

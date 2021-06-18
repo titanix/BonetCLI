@@ -4,15 +4,10 @@ using System.Text;
 
 namespace BonetIDE
 {
-    class MergeCommand : ICommand
+    class MergeMagicCommand : ICommand
     {
-        private string separator = "";
+        private string separator = " ";
         CharacterConverter charConverter = new();
-
-        public MergeCommand(string separator = "")
-        {
-            this.separator = separator;
-        }
 
         public ICommandResult Execute(IContext context, List<ICommandArgument> arguments)
         {
@@ -21,17 +16,27 @@ namespace BonetIDE
 
             foreach (ICommandArgument arg in arguments)
             {
+                string content = "";
                 if (arg is StringArgument)
                 {
-                    result.Append(arg.ToString() + separator);
+                    content = arg.ToString();
                 }
                 if (arg is IntArgument)
                 {
                     int intArg = (arg as IntArgument).Value - 1;
                     if (context.stack.IsValidStackReference(intArg))
                     {
-                        result.Append(context.stack.ElementAt(intArg) + separator);
+                        content = context.stack.ElementAt(intArg);
                     }
+                }
+
+                if (IsCjvk(content))
+                {
+                    result.Append(content);
+                }
+                else
+                {
+                    result.Append(content + separator);
                 }
             }
 
@@ -39,6 +44,17 @@ namespace BonetIDE
             context.stack.Print();
 
             return new CommandResult(true);
+        }
+
+        private bool IsCjvk(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '\u2E80')
+                    return false;
+            }
+
+            return true;
         }
     }
 }
