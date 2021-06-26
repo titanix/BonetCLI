@@ -32,8 +32,12 @@ namespace BonetIDE
 
             for (int i = 0; i < hannom.Length; i++)
             {
-                string @char = hannom.AtIndex(i);
-                result.Add(new CharacterReading(@char, parts[i]));
+                try
+                {
+                    string @char = hannom.AtIndex(i);
+                    result.Add(new CharacterReading(@char, parts[i]));
+                }
+                catch { }
             }
 
             return result;
