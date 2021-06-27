@@ -15,9 +15,34 @@ namespace BonetIDE
             ["dd"] = "đ",
         };
 
+        Dictionary<string, string> idsConversions = new()
+        {
+            ["V"] = "⿰",
+            ["H"] = "⿱",
+            ["L"] = "⿺",
+            ["T"] = "⿹",
+            ["N"] = "⿵",
+            ["O"] = "⿴",
+            ["M"] = "⿲",
+            ["E"] = "⿳",
+            ["W"] = "⿻",
+        };
+
         internal string Convert(string str)
         {
             return ConvertTone(ConvertLetters(str));
+        }
+
+        internal string ConvertIds(string str)
+        {
+            string result = str;
+
+            foreach (KeyValuePair<string, string> pair in idsConversions)
+            {
+                result = result.Replace(pair.Key, pair.Value);
+            }
+
+            return result;
         }
 
         private string ConvertLetters(string str)

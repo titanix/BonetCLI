@@ -15,6 +15,7 @@ namespace BonetIDE
                 return new CommandResult(false);
 
             string converted = charConverter.Convert(arg.ToString());
+            converted = charConverter.ConvertIds(converted);
             context.stack.Add(converted);
 
             context.stack.Print();
