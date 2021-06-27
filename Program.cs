@@ -15,6 +15,24 @@ namespace BonetIDE
             p.Run();
         }
 
+        Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>()
+        {
+            ["a"] = new AddCommand(),
+            ["c"] = new ConvertCommand(),
+            ["cs"] = new ClearStackCommand(),
+            ["d"] = new DeleteCommand(),
+            ["h"] = new HelpCommand(),
+            ["ht"] = new HelpToneCommand(),
+            ["m"] = new MergeCommand(),
+            ["mm"] = new MergeMagicCommand(),
+            ["ms"] = new MergeCommand(" "),
+            ["p"] = new PushCommand(),
+            ["ps"] = new PushSplitCommand(),
+            ["vs"] = new ViewStackCommand(),
+            ["s"] = new SearchCommand(),
+            ["q"] = new QuitCommand(),
+        };
+
         public void Run()
         {
             ICharacterStore wiki = LoadWikiData();
@@ -31,29 +49,22 @@ namespace BonetIDE
                 stack
             );
 
-            Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>()
-            {
-                ["a"] = new AddCommand(),
-                ["c"] = new ConvertCommand(),
-                ["cs"] = new ClearStackCommand(),
-                ["d"] = new DeleteCommand(),
-                ["h"] = new HelpCommand(),
-                ["ht"] = new HelpToneCommand(),
-                ["m"] = new MergeCommand(),
-                ["mm"] = new MergeMagicCommand(),
-                ["ms"] = new MergeCommand(" "),
-                ["p"] = new PushCommand(),
-                ["ps"] = new PushSplitCommand(),
-                ["vs"] = new ViewStackCommand(),
-                ["s"] = new SearchCommand(),
-                ["q"] = new QuitCommand(),
-            };
+            Queue<CommandComponents> commandList = new();
 
         loop:
-            Console.Write("> ");
-            string line = Console.ReadLine();
-            line = NormalizeSpaces(line);
-            List<ICommandArgument> commandArgs = ParseCommand(line);
+            if (commandList.Count == 0)
+            {
+                Console.Write("> ");
+                string line = Console.ReadLine();
+                line = NormalizeSpaces(line);
+                
+                foreach (CommandComponents cc in ParseCommandLine(line))
+                {
+                    commandList.Enqueue(cc);
+                }
+            }
+
+            CommandComponents commandArgs = commandList.Dequeue();
 
             if (commandArgs.Count > 0 && commandArgs[0] is StringArgument)
             {
@@ -149,10 +160,23 @@ namespace BonetIDE
                 .Replace("  ", " ");
         }
 
-        private List<ICommandArgument> ParseCommand(string line)
+        private List<CommandComponents> ParseCommandLine(string line)
+        {
+            List<CommandComponents> result = new();
+
+            string[] parts = line.Split(';', StringSplitOptions.RemoveEmptyEntries);
+            foreach (string subCommand in parts)
+            {
+                result.Add(ParseCommand(subCommand));
+            }
+
+            return result;
+        }
+
+        private CommandComponents ParseCommand(string line)
         {
             string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            List<ICommandArgument> result = new();
+            CommandComponents result = new();
 
             foreach (string part in parts)
             {

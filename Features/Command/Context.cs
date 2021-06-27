@@ -19,7 +19,7 @@ namespace BonetIDE
             this.stack = stack;
         }
 
-        public ICharacterStore characterReadingStore { get; private set; }
+        public ICharacterStore characterReadingStore { get; init; }
         public IGraph idsGraph { get; }
         public IBonetDictionary bonetDictionary { get; }
         public List<object> resultList { get; }
