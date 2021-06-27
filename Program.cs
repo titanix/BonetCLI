@@ -66,6 +66,8 @@ namespace BonetIDE
                 }
             }
 
+            if (commandList.Count == 0)
+                goto loop;
             CommandComponents commandArgs = commandList.Dequeue();
 
             if (commandArgs.Count > 0 && commandArgs[0] is StringArgument)
