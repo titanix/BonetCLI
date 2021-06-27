@@ -23,6 +23,7 @@ namespace BonetIDE
             ["d"] = new DeleteCommand(),
             ["h"] = new HelpCommand(),
             ["ht"] = new HelpToneCommand(),
+            ["hi"] = new HelpIdsCommand(),
             ["m"] = new MergeCommand(),
             ["mm"] = new MergeMagicCommand(),
             ["ms"] = new MergeCommand(" "),
