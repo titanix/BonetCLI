@@ -21,6 +21,7 @@ namespace BonetIDE
             ["c"] = new ConvertCommand(),
             ["cs"] = new ClearStackCommand(),
             ["d"] = new DeleteCommand(),
+            ["dc"] = new DecomposeCharacterCommand(),
             ["h"] = new HelpCommand(),
             ["ht"] = new HelpToneCommand(),
             ["hi"] = new HelpIdsCommand(),

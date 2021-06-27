@@ -19,5 +19,15 @@ namespace BonetIDE
         {
             return value >= 0 && value < stack.Count;
         }
+
+        public static void PrintResultList(this List<object> list)
+        {
+            Console.WriteLine("Results list:");
+            int i = 1;
+            foreach (object obj in list)
+            {
+                Console.WriteLine($"{i++}. {obj}");
+            }
+        }
     }
 }

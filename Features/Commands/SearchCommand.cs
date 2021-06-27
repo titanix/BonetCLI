@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,16 +24,10 @@ namespace BonetIDE
                     context.resultList.AddRange(searcher.Search(context.idsGraph, true, chars));
                 }
 
-                Console.WriteLine("Results list:");
-                int i = 1;
-                foreach (object obj in context.resultList)
-                {
-                    Console.WriteLine($"{i++}. {obj}");
-                }
+                context.resultList.PrintResultList();
             }
             catch
             { }
-
 
             return new CommandResult(true);
         }

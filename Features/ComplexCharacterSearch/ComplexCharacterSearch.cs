@@ -22,7 +22,7 @@ namespace BonetIDE
 
             for (int i = 0; i < predecessorsLists.Length; i++)
             {
-                predecessorsLists[i] = 
+                predecessorsLists[i] =
                     GetPredecessors(graph, inputVertices[i], composeRelationship)
                     .Where(v => IsKanji(v.ToString())).ToList();
                 if (includeSelf)
@@ -55,10 +55,34 @@ namespace BonetIDE
             return candidates;
         }
 
+        public List<string> Decompose(IGraph graph, params string[] input)
+        {
+            GraphObjectTypeInfo composeRelationship = new(Guid.Parse("98b96e12-95d7-42ec-9b30-a8433904789d"), "Compose", "", GraphObjectKind.Edge, true);
+
+            List<IVertexContent> inputVertices = new();
+            foreach (string str in input)
+            {
+                IVertexContent vertex = graph.SearchVertices("", str)?.FirstOrDefault();
+                if (vertex == null)
+                    continue;
+                inputVertices.Add(vertex);
+            }
+
+            List<IVertexContent> predecessorsLists = new();
+
+            for (int i = 0; i < inputVertices.Count; i++)
+            {
+                predecessorsLists.AddRange(
+                    GetPredecessors(graph, inputVertices[i], composeRelationship)
+                    .Where(v => IsKanji(v.ToString())).ToList());
+            }
+
+            return predecessorsLists.Select(a => a.Content).ToList();
+        }
+
         private static List<IVertexContent> GetPredecessors(IGraph graph, IVertexContent vertex, GraphObjectTypeInfo edgeType)
         {
             List<IVertexContent> result = new();
-
 
             foreach (IEdgeContent edge in graph.GetAdjacentEdges(vertex))
             {
@@ -69,8 +93,10 @@ namespace BonetIDE
                     {
                         throw new ArgumentException("Edge relationship (parameter 2) is not binary.");
                     }
+
                     IVertexContent v1 = linkedObjects[0];
                     IVertexContent v2 = linkedObjects[1];
+
                     if (v2.Equals(vertex))
                     {
                         result.Add(v1);
@@ -95,8 +121,10 @@ namespace BonetIDE
                     {
                         throw new ArgumentException("Edge relationship (parameter 2) is not binary.");
                     }
+
                     IVertexContent v1 = linkedObjects[0];
                     IVertexContent v2 = linkedObjects[1];
+
                     if (v1.Equals(vertex))
                     {
                         result.Add(v2);
@@ -117,16 +145,6 @@ namespace BonetIDE
             foreach (char c in str.ToCharArray())
             {
                 if (!IsKanji(c))
-                    return false;
-            }
-            return true;
-        }
-
-        public static bool IsRomaji(string str)
-        {
-            foreach (char c in str.ToCharArray())
-            {
-                if (!(c < 0x024F))
                     return false;
             }
             return true;

@@ -40,6 +40,26 @@ Results list:
 12. 盃
 ```
 
+### [d]ecompose [c]character
+
+Decompose a character into its immediate constituents.
+
+\> dc 吧
+
+```
+Results list:
+1. 口
+2. 巴
+```
+
+\> dc 蟹
+
+```
+Results list:
+1. 解
+2. 虫
+```
+
 ### [p]ush on stack
 
 Push a result from a results list into the stack and display the stack content.
@@ -229,3 +249,7 @@ Display help.
 ### [h]elp [t]ones
 
 Get information about tone number and diacritics.
+
+### [h]elp [i]ds
+
+Get information the IDS conversion symbols.
