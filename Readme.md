@@ -280,3 +280,15 @@ Get information about tone number and diacritics.
 ### [h]elp [i]ds
 
 Get information the IDS conversion symbols.
+
+## Chaining Commands
+
+Multiple commands can be chained if separated by a semi-colon.
+
+\> ms a 阿 ; a 1
+
+```
+Stack content:
+1. a 阿
+Content added.
+```
