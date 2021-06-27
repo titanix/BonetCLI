@@ -44,6 +44,8 @@ Results list:
 
 Decompose a character into its immediate constituents.
 
+#### dc sinogram_1 ... sinogram_N
+
 \> dc 吧
 
 ```
@@ -177,6 +179,25 @@ Stack content:
 3. a _ b
 ```
 
+### [m]erge [m]agic
+
+Merge strings in quốc ngữ append space after each syllables and nôm without inserting space. Result is pushed to the stack. The resulting string is in the format expected by the dictionary and can be used with the [a]dd command.
+
+```
+Stack content:
+1. bình
+2. 平
+```
+
+\> mm 1 an 2 安
+
+```
+Stack content:
+1. bình
+2. 平
+3. bình an 平安
+```
+
 ### [a]dd to dictionary
 
 Add a literal to the dictionary under edition.
@@ -188,6 +209,8 @@ No feedback is given on the operation.
 ### [c]onvert 
 
 Convert a letter sequence into another and add the result to the stack. Used to add tone diacritic to syllable.
+
+The convert command can also convert some CAPS letters to IDS symbols (use [hi] to see allowed conversions).
 
 \> c aa
 
@@ -201,6 +224,10 @@ Stack content:
 Stack content:
 1. luận
 ```
+
+### [v]iew [s]tack
+
+Display the content of the stack.
 
 ### [c]lear [s]tack
 
