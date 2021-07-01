@@ -6,6 +6,8 @@
 
 Search for entries using quốc ngữ without diacritics or by composition of Chinese character components. Space in-between arguments can be either ASCII or Chinese space.
 
+In letter search, the sequence `dd` is replaced by `đ`.
+
 #### s quoc_ngu_without_diacritics
 
 \> s boi

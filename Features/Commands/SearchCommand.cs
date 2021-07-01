@@ -14,7 +14,8 @@ namespace BonetIDE
                 if (arguments.Count == 1)
                 {
                     context.resultList.Clear();
-                    context.resultList.AddRange(context.characterReadingStore.SearchByReading(arguments[0].ToString()));
+                    string search = arguments[0].ToString().Replace("dd", "đ");
+                    context.resultList.AddRange(context.characterReadingStore.SearchByReading(search));
                 }
                 else
                 {
