@@ -14,14 +14,43 @@ namespace BonetIDE
                 if (arguments.Count == 1)
                 {
                     context.resultList.Clear();
-                    string search = arguments[0].ToString().Replace("dd", "đ");
+
+                    string search = arguments[0].ToString();
+                    search = search.Replace("dd", "đ");
+
+                    if (arguments[0] is IntArgument intArg)
+                    {
+                        if (context.stack.IsValidStackReference(intArg.Value - 1))
+                        {
+                            search = context.stack.ElementAt(intArg.Value - 1);
+                        }
+                    }
+                    
                     context.resultList.AddRange(context.characterReadingStore.SearchByReading(search));
                 }
                 else
                 {
                     ComplexCharacterSearch searcher = new();
                     context.resultList.Clear();
-                    string[] chars = arguments.Select(a => a.ToString()).ToArray();
+
+                    List<string> searchChars = new();
+                    foreach (ICommandArgument arg in arguments)
+                    {
+                        if (arg is StringArgument stringArg)
+                        {
+                            searchChars.Add(stringArg.Value);
+                        }
+
+                        if (arg is IntArgument intArg)
+                        {
+                            if (context.stack.IsValidStackReference(intArg.Value - 1))
+                            {
+                                searchChars.Add(context.stack.ElementAt(intArg.Value - 1));
+                            }
+                        }
+                    }
+
+                    string[] chars = searchChars.Select(a => a.ToString()).ToArray();
                     context.resultList.AddRange(searcher.Search(context.idsGraph, true, chars));
                 }
 

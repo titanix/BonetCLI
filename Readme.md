@@ -8,6 +8,8 @@ Search for entries using quốc ngữ without diacritics or by composition of Ch
 
 In letter search, the sequence `dd` is replaced by `đ`.
 
+Search command can use numbers for references on the stack.
+
 #### s quoc_ngu_without_diacritics
 
 \> s boi
