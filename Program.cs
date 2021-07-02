@@ -13,6 +13,8 @@ namespace BonetIDE
         {
             Program p = new();
             p.Run();
+
+            //TestParser.Test("/Users/Louis/Code/BonetIDE/data/bonet.txt");
         }
 
         Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>()
@@ -26,6 +28,8 @@ namespace BonetIDE
             ["ht"] = new HelpToneCommand(),
             ["hi"] = new HelpIdsCommand(),
             ["m"] = new MergeCommand(),
+            ["me"] = new MacroExecuteCommand(),
+            ["ml"] = new MacroListCommand(),
             ["mm"] = new MergeMagicCommand(),
             ["ms"] = new MergeCommand(" "),
             ["p"] = new PushCommand(),
@@ -42,16 +46,17 @@ namespace BonetIDE
             characterReadingStore = new CombinedCharacterStore(wiki, bonet);
             LoadIdsData();
             OpenBonetDictionary();
+            Queue<CommandComponents> commandList = new();
 
             IContext context = new Context(
                 characterReadingStore,
                 idsGraph,
                 bonetDictionary,
                 resultList,
-                stack
+                stack,
+                new MacroStore(),
+                commandList
             );
-
-            Queue<CommandComponents> commandList = new();
 
         loop:
             if (commandList.Count == 0)
@@ -59,7 +64,7 @@ namespace BonetIDE
                 Console.Write("> ");
                 string line = Console.ReadLine();
                 line = NormalizeSpaces(line);
-                
+
                 foreach (CommandComponents cc in ParseCommandLine(line))
                 {
                     commandList.Enqueue(cc);
@@ -164,7 +169,7 @@ namespace BonetIDE
                 .Replace("  ", " ");
         }
 
-        private List<CommandComponents> ParseCommandLine(string line)
+        internal static List<CommandComponents> ParseCommandLine(string line)
         {
             List<CommandComponents> result = new();
 
@@ -177,7 +182,7 @@ namespace BonetIDE
             return result;
         }
 
-        private CommandComponents ParseCommand(string line)
+        private static CommandComponents ParseCommand(string line)
         {
             string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             CommandComponents result = new();

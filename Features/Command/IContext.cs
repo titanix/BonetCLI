@@ -11,5 +11,7 @@ namespace BonetIDE
         IBonetDictionary bonetDictionary { get; }
         List<object> resultList { get; }
         List<string> stack { get; }
+        IMacroStore macros { get; }
+        Queue<CommandComponents> commandList { get; }
     }
 }
