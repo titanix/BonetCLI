@@ -8,12 +8,30 @@ namespace BonetIDE
     {
         public ICommandResult Execute(IContext context, List<ICommandArgument> arguments)
         {
-            ICommandArgument arg = arguments.Skip(1).FirstOrDefault();
+            arguments = arguments.Skip(1).ToList();
 
             ComplexCharacterSearch searcher = new();
             context.resultList.Clear();
-            string[] chars = arguments.Select(a => a.ToString()).ToArray();
-            context.resultList.AddRange(searcher.Decompose(context.idsGraph, chars));
+            List<string> searchChars = new();
+
+            foreach (ICommandArgument arg in arguments)
+            {
+                if (arg is StringArgument stringArg)
+                {
+                    searchChars.Add(arg.ToString());
+                }
+
+                if (arg is IntArgument intArg)
+                {
+                    int stackRef = intArg.Value - 1;
+                    if (context.stack.IsValidStackReference(stackRef))
+                    {
+                        searchChars.Add(context.stack.ElementAt(stackRef));
+                    }
+                }
+            }
+
+            context.resultList.AddRange(searcher.Decompose(context.idsGraph, searchChars.ToArray()));
 
             context.resultList.PrintResultList();
 
