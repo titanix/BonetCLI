@@ -273,6 +273,27 @@ Stack content:
 2. c
 ```
 
+### [d]elete [f]rom
+
+Delete items from the stack from a given index upwards.
+
+```
+Stack content:
+1. a
+2. b
+3. c
+4. d
+```
+
+\> df 3
+
+```
+Stack content:
+1. a
+2. b
+```
+
+
 ### [n]ormalize [d]ecomposed
 
 Normalize an input string to Unicode NFD (output to result list).
