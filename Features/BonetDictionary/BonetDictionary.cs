@@ -25,7 +25,7 @@ namespace BonetIDE
         public string AddContent(string content)
         {
             file.WriteLine(content);
-            return "Content added.";
+            return $"Content added: {content}";
             /*
             var result = Validate(content);
             if (result.Success)
