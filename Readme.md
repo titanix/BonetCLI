@@ -233,6 +233,10 @@ Stack content:
 
 Display the content of the stack.
 
+### [v]iew [r]results
+
+Display the content of the result list.
+
 ### [c]lear [s]tack
 
 Empty the stack.
@@ -268,6 +272,14 @@ Stack content:
 1. a
 2. c
 ```
+
+### [n]ormalize [d]ecomposed
+
+Normalize an input string to Unicode NFD (output to result list).
+
+### [n]ormalize [c]omposed
+
+Normalize an input string to Unicode NFC (output to result list).
 
 ### [q]uit
 
