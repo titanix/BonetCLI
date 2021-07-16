@@ -1,4 +1,18 @@
-# Bonet IDE
+# Bonet CLI
+
+Bonet CLI is a command line program to search nôm character, input Vietnamese diacritics and manipulate strings.
+
+Run with `dotnet run`.
+
+## Data Files
+
+The `data` folders contains three files, each having a particular license.
+
+|File|Licence|Source|
+|---|---|---|
+|wiki.txt|[CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/)|[Wiktionary Sino-Vietnamese Words List](https://en.wiktionary.org/w/index.php?title=Category:Sino-Vietnamese_words)|
+|ids.xml|[GNU GPL v2 or later](https://gitlab.chise.org/CHISE/ids/-/blob/master/README.en)|[cjkvi-ids project]()|
+|bonet.txt|[CC BY 4.0 International](https://creativecommons.org/licenses/by/4.0/)|[Bonet XXI project](https://github.com/titanix/Bonet_XXI)|
 
 ## Commands
 
