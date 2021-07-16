@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.IO;
 
@@ -11,6 +12,9 @@ namespace BonetIDE
     {
         public static void Main(string[] args)
         {
+            UTF8Encoding utf8 = new();
+            Console.OutputEncoding = utf8;
+
             Program p = new();
             p.Run();
 
