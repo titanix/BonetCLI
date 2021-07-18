@@ -17,8 +17,6 @@ namespace BonetIDE
 
             Program p = new();
             p.Run();
-
-            //TestParser.Test("/Users/Louis/Code/BonetIDE/data/bonet.txt");
         }
 
         Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>()
@@ -49,19 +47,14 @@ namespace BonetIDE
 
         public void Run()
         {
-            ICharacterStore wiki = LoadWikiData();
-            ICharacterStore bonet = LoadBonetData();
-            characterReadingStore = new CombinedCharacterStore(wiki, bonet);
-            LoadIdsData();
-            OpenBonetDictionary();
             Queue<CommandComponents> commandList = new();
 
             IContext context = new Context(
-                characterReadingStore,
-                idsGraph,
-                bonetDictionary,
-                resultList,
-                stack,
+                new CombinedCharacterStore(LoadWikiData(), LoadBonetData()),
+                LoadIdsData(),
+                OpenBonetDictionary(),
+                new List<object>(),
+                new List<string>(),
                 new MacroStore(),
                 commandList
             );
@@ -103,18 +96,12 @@ namespace BonetIDE
             goto loop;
         }
 
-        ICharacterStore characterReadingStore;
-        IGraph idsGraph;
-        IBonetDictionary bonetDictionary;
-        List<object> resultList = new List<object>();
-        List<string> stack = new();
-
         private ICharacterStore LoadWikiData()
         {
             Console.WriteLine("Loading Wiktionary character reading data.");
 
             WiktionaryDataLoader wikiData = new();
-            ICharacterStore result = characterReadingStore = wikiData.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/wiki.txt"));
+            ICharacterStore result = wikiData.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/wiki.txt"));
 
             Console.WriteLine("Done.");
 
@@ -126,47 +113,28 @@ namespace BonetIDE
             Console.WriteLine("Loading Bonet character reading data.");
 
             BonetDictionaryLoader bonetData = new();
-            ICharacterStore result = characterReadingStore = bonetData.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
+            ICharacterStore result = bonetData.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
 
             Console.WriteLine("Done.");
 
             return result;
         }
 
-        private void LoadIdsData()
+        private IGraph LoadIdsData()
         {
             Console.WriteLine("Loading IDS character composition data.");
 
             XmlDeserializer deser = new();
-            idsGraph = deser.Deserialize(Path.Combine(Environment.CurrentDirectory, "data/ids.xml"));
+            IGraph idsGraph = deser.Deserialize(Path.Combine(Environment.CurrentDirectory, "data/ids.xml"));
 
             Console.WriteLine("Done.");
+
+            return idsGraph;
         }
 
-        private void OpenBonetDictionary()
+        private BonetDictionary OpenBonetDictionary()
         {
-            bonetDictionary = new BonetDictionary(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
-        }
-
-        private void SearchNet(string line)
-        {
-            line = line.Substring(3);
-            string url = "https://chunom.org/pages/?search=";
-            string search = line;
-
-            if (int.TryParse(line, out int value))
-            {
-                if (stack.IsValidStackReference(value))
-                {
-                    search = stack[value];
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-            System.Diagnostics.Process.Start(@"/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser", url + search);
+            return new BonetDictionary(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
         }
 
         private string NormalizeSpaces(string str)
