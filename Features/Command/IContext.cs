@@ -14,5 +14,6 @@ namespace BonetIDE
         IMacroStore macros { get; }
         Queue<CommandComponents> commandList { get; }
         IdsDataStore rawIdsStore { get; }
+        List<ICommand> commands { get; }
     }
 }

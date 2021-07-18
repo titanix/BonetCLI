@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Leger;
 using Leger.IO;
@@ -34,7 +35,7 @@ namespace BonetIDE
             ["me"] = new MacroExecuteCommand(),
             ["ml"] = new MacroListCommand(),
             ["mm"] = new MergeMagicCommand(),
-            ["ms"] = new MergeCommand(" "),
+            ["ms"] = new MergeSpaceCommand(),
             ["nc"] = new NormalizeComposedCommand(),
             ["nd"] = new NormalizeDecomposedCommand(),
             ["p"] = new PushCommand(),
@@ -57,7 +58,8 @@ namespace BonetIDE
                 new List<string>(),
                 new MacroStore(),
                 commandList,
-                LoadRawIdsData()
+                LoadRawIdsData(),
+                commands.Values.ToList()
             );
 
         loop:

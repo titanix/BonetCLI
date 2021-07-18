@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BonetIDE
 {
@@ -10,22 +11,15 @@ namespace BonetIDE
         public ICommandResult Execute(IContext context, List<ICommandArgument> arguments)
         {
             Console.WriteLine("** Available commands **");
-            Console.WriteLine();
+            
+            foreach (ICommand command in context.commands)
+            {
+                string fullName = command.GetType().Name;
+                string shortName = fullName.Substring(0, fullName.IndexOf("Command"));
+                string cmd = string.Join("", shortName.Where(c => char.IsUpper(c)));
 
-            Console.WriteLine("Search");
-            Console.WriteLine("s quoc_ngu_without_diacritics");
-            Console.WriteLine("-> s boi");
-            Console.WriteLine("s sinogram_1 ... sinogram_N");
-            Console.WriteLine("-> s 不 皿");
-            Console.WriteLine();
-
-            Console.WriteLine("Add Content");
-            Console.WriteLine("a nom reading");
-            Console.WriteLine("-> a 盃 bôi");
-            Console.WriteLine();
-
-            Console.WriteLine("Help");
-            Console.WriteLine("h");
+                Console.WriteLine($"{cmd.ToLower()}\t{shortName}");
+            }
 
             return new CommandResult(true);
         }
