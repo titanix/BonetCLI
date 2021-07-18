@@ -58,6 +58,30 @@ Results list:
 12. 盃
 ```
 
+#### s ids_sequence
+
+\> s ⿰氵國
+
+```
+Results list:
+1. 漍
+```
+
+#### s stack_reference
+
+```
+Stack content:
+1. vua
+```
+
+\> s 1
+
+```
+Results list:
+1. 皮 vừa
+2. 𤤰 vua
+```
+
 ### [d]ecompose [c]character
 
 Decompose a character into its immediate constituents.
@@ -72,12 +96,19 @@ Results list:
 2. 巴
 ```
 
-\> dc 蟹
+#### dc stack_reference_1 ... stack_reference_N
+
+```
+Stack content:
+1. 𠀧
+```
+
+\> dc 1
 
 ```
 Results list:
-1. 解
-2. 虫
+1. 三
+2. 巴
 ```
 
 ### [p]ush on stack
@@ -315,6 +346,24 @@ Normalize an input string to Unicode NFD (output to result list).
 ### [n]ormalize [c]omposed
 
 Normalize an input string to Unicode NFC (output to result list).
+
+### [m]acro [l]ist
+
+List the macros usable in the current session.
+
+\> ml
+
+```
+Macro list
+1. => mm 2 1 ; a 3 ; d 3
+2. => mm 2 4 1 3 ; a 5 ; d 3 4 5
+3. => mm 4 2 3 1 ; a 5 ; d 3 4 5
+4. => mm 2 3 1 4 ; a 5 ; d 3 4 5
+```
+
+### [m]acro [e]xecute
+
+Execute a macro designated by its index in the macro list.
 
 ### [q]uit
 
