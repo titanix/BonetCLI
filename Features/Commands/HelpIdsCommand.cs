@@ -10,6 +10,7 @@ namespace BonetIDE
             Console.WriteLine("V ⿰   H ⿱   L ⿺");
             Console.WriteLine("T ⿹   N ⿵   O ⿴");
             Console.WriteLine("M ⿲   E ⿳   W ⿻");
+            Console.WriteLine("U ⿶   C ⿷   P ⿸");
 
             return new CommandResult(true);
         }

@@ -13,5 +13,6 @@ namespace BonetIDE
         List<string> stack { get; }
         IMacroStore macros { get; }
         Queue<CommandComponents> commandList { get; }
+        IdsDataStore rawIdsStore { get; }
     }
 }

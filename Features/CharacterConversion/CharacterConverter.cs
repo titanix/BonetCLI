@@ -26,6 +26,9 @@ namespace BonetIDE
             ["M"] = "⿲",
             ["E"] = "⿳",
             ["W"] = "⿻",
+            ["U"] = "⿶",
+            ["C"] = "⿷",
+            ["P"] = "⿸",
         };
 
         internal string Convert(string str)

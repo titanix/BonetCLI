@@ -12,7 +12,8 @@ namespace BonetIDE
         List<object> resultList,
         List<string> stack,
         IMacroStore macroStore,
-        Queue<CommandComponents> commandList)
+        Queue<CommandComponents> commandList,
+        IdsDataStore rawIdsStore)
         {
             this.characterReadingStore = characterReadingStore;
             this.idsGraph = idsGraph;
@@ -21,6 +22,7 @@ namespace BonetIDE
             this.stack = stack;
             this.macros = macroStore;
             this.commandList = commandList;
+            this.rawIdsStore = rawIdsStore;
         }
 
         public ICharacterStore characterReadingStore { get; init; }
@@ -30,5 +32,6 @@ namespace BonetIDE
         public List<string> stack { get; }
         public IMacroStore macros { get; }
         public Queue<CommandComponents> commandList { get; }
+        public IdsDataStore rawIdsStore { get; }
     }
 }

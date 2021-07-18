@@ -56,7 +56,8 @@ namespace BonetIDE
                 new List<object>(),
                 new List<string>(),
                 new MacroStore(),
-                commandList
+                commandList,
+                LoadRawIdsData()
             );
 
         loop:
@@ -122,7 +123,7 @@ namespace BonetIDE
 
         private IGraph LoadIdsData()
         {
-            Console.WriteLine("Loading IDS character composition data.");
+            Console.WriteLine("Loading IDS character composition data (XML).");
 
             XmlDeserializer deser = new();
             IGraph idsGraph = deser.Deserialize(Path.Combine(Environment.CurrentDirectory, "data/ids.xml"));
@@ -135,6 +136,18 @@ namespace BonetIDE
         private BonetDictionary OpenBonetDictionary()
         {
             return new BonetDictionary(Path.Combine(Environment.CurrentDirectory, "data/bonet.txt"));
+        }
+
+        private IdsDataStore LoadRawIdsData()
+        {
+            Console.WriteLine("Loading IDS character composition data (text).");
+
+            IdsFileLoader loader = new();
+            IdsDataStore result = new(loader.LoadFile(Path.Combine(Environment.CurrentDirectory, "data/ids.txt")));
+
+            Console.WriteLine("Done.");
+
+            return result;
         }
 
         private string NormalizeSpaces(string str)

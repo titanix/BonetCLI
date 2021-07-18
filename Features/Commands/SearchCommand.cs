@@ -25,8 +25,15 @@ namespace BonetIDE
                             search = context.stack.ElementAt(intArg.Value - 1);
                         }
                     }
-                    
-                    context.resultList.AddRange(context.characterReadingStore.SearchByReading(search));
+
+                    if (arguments[0] is StringArgument strArg && strArg.Value[0] >= '\u2FF0' && strArg.Value[0] <= '\u2FFB')
+                    {
+                        context.resultList.Add(context.rawIdsStore.SearchCharacter(strArg.Value));
+                    }
+                    else
+                    {
+                        context.resultList.AddRange(context.characterReadingStore.SearchByReading(search));
+                    }
                 }
                 else
                 {
