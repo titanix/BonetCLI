@@ -338,6 +338,24 @@ Stack content:
 2. b
 ```
 
+### [d]elete [b]elow
+
+Delete items from the stack below a given index.
+
+```
+Stack content:
+1. a
+2. b
+3. c
+```
+
+\> db 2
+
+```
+Stack content:
+1. b
+2. c
+```
 
 ### [n]ormalize [d]ecomposed
 
@@ -368,6 +386,12 @@ Execute a macro designated by its index in the macro list.
 ### [q]uit
 
 Quit the application.
+
+### [s]ave [s]tack
+
+Save content of the stack into a file.
+
+\> ss stack_save.txt
 
 ### [h]elp
 

@@ -9,7 +9,9 @@ namespace BonetIDE
         private string separator = "";
         CharacterConverter charConverter = new();
 
-        public MergeCommand(string separator = "")
+        public MergeCommand() { }
+
+        public MergeCommand(string separator)
         {
             this.separator = separator;
         }

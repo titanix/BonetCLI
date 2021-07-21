@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BonetIDE
 {
@@ -7,11 +8,16 @@ namespace BonetIDE
     {
         public static void Print(this List<string> stack)
         {
-            Console.WriteLine("Stack content:");
+            stack.Print(Console.Out);
+        }
+
+        public static void Print(this List<string> stack, TextWriter output)
+        {
+            output.WriteLine("Stack content:");
             int i = 1;
             foreach (string str in stack)
             {
-                Console.WriteLine($"{i++}. {str}");
+                output.WriteLine($"{i++}. {str}");
             }
         }
 

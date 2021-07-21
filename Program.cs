@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 using Leger;
 using Leger.IO;
@@ -20,34 +21,12 @@ namespace BonetIDE
             p.Run();
         }
 
-        Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>()
-        {
-            ["a"] = new AddCommand(),
-            ["c"] = new ConvertCommand(),
-            ["cs"] = new ClearStackCommand(),
-            ["d"] = new DeleteCommand(),
-            ["dc"] = new DecomposeCharacterCommand(),
-            ["df"] = new DeleteFromCommand(),
-            ["h"] = new HelpCommand(),
-            ["ht"] = new HelpToneCommand(),
-            ["hi"] = new HelpIdsCommand(),
-            ["m"] = new MergeCommand(),
-            ["me"] = new MacroExecuteCommand(),
-            ["ml"] = new MacroListCommand(),
-            ["mm"] = new MergeMagicCommand(),
-            ["ms"] = new MergeSpaceCommand(),
-            ["nc"] = new NormalizeComposedCommand(),
-            ["nd"] = new NormalizeDecomposedCommand(),
-            ["p"] = new PushCommand(),
-            ["ps"] = new PushSplitCommand(),
-            ["vr"] = new ViewResultsCommand(),
-            ["vs"] = new ViewStackCommand(),
-            ["s"] = new SearchCommand(),
-            ["q"] = new QuitCommand(),
-        };
+        Dictionary<string, ICommand> commands;
 
         public void Run()
         {
+            LoadCommands();
+
             Queue<CommandComponents> commandList = new();
 
             IContext context = new Context(
@@ -96,7 +75,31 @@ namespace BonetIDE
                     }
                 }
             }
+
             goto loop;
+        }
+
+        private void LoadCommands()
+        {
+            commands = new();
+
+            IEnumerable<Type> types = Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(ICommand).IsAssignableFrom(t)
+                && t.IsClass
+                && !t.IsAbstract);
+
+            foreach (Type t in types)
+            {
+                commands.Add(GetCommandCode(t), Activator.CreateInstance(t) as ICommand);
+            }
+        }
+
+        public string GetCommandCode(Type type)
+        {
+            string fullName = type.Name;
+            string shortName = fullName.Substring(0, fullName.IndexOf("Command"));
+            string cmd = string.Join("", shortName.Where(c => char.IsUpper(c)));
+
+            return cmd.ToLower();
         }
 
         private ICharacterStore LoadWikiData()
