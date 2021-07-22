@@ -35,7 +35,8 @@ namespace BonetIDE
             string search = arguments[1] switch
             {
                 StringArgument sa => sa.Value,
-                IntArgument ia => context.stack.IsValidStackReference(ia.Value - 1) ? context.stack[ia.Value - 1] : ""
+                IntArgument ia => context.stack.IsValidStackReference(ia.Value - 1) ? context.stack[ia.Value - 1] : "",
+                _ => ""
             };
 
             if (providers.ContainsKey(provider))
