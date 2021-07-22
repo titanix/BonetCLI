@@ -18,13 +18,6 @@ namespace BonetIDE
 
         public ICommandResult Execute(IContext context, List<ICommandArgument> arguments)
         {
-            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Console.WriteLine("This command is only supported on Windows.");
-
-                return new CommandResult(false);
-            }
-
             arguments = arguments.Skip(1).ToList();
 
             if (arguments.Count != 2)
