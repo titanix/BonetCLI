@@ -1,3 +1,5 @@
-.vs
+.vs/
+.idea/
+.vscode/
 bin/
 obj/
