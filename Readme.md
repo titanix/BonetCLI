@@ -82,6 +82,17 @@ Results list:
 2. 𤤰 vua
 ```
 
+### [s]earch [n]et
+
+Available only on Windows.
+
+Make a web request to search a given string or stack reference. Use `h sn` to list the supported providers.
+
+#### sn provider string
+#### sn provider stack_reference
+
+\> sn c lai 
+
 ### [d]ecompose [c]character
 
 Decompose a character into its immediate constituents.
@@ -396,6 +407,12 @@ Save content of the stack into a file.
 ### [h]elp
 
 Display help.
+
+#### h command_name
+
+Display help specific to a command.
+
+\> h sn
 
 ### [h]elp [t]ones
 
