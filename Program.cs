@@ -89,17 +89,8 @@ namespace BonetIDE
 
             foreach (Type t in types)
             {
-                commands.Add(GetCommandCode(t), Activator.CreateInstance(t) as ICommand);
+                commands.Add(CommandNameHelper.GetCommandCode(t), Activator.CreateInstance(t) as ICommand);
             }
-        }
-
-        public string GetCommandCode(Type type)
-        {
-            string fullName = type.Name;
-            string shortName = fullName.Substring(0, fullName.IndexOf("Command"));
-            string cmd = string.Join("", shortName.Where(c => char.IsUpper(c)));
-
-            return cmd.ToLower();
         }
 
         private ICharacterStore LoadWikiData()
