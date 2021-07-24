@@ -36,5 +36,6 @@ namespace BonetIDE
         public Queue<CommandComponents> commandList { get; }
         public IdsDataStore rawIdsStore { get; }
         public List<ICommand> commands { get; }
+        public List<string> previousStack { get; } = new();
     }
 }

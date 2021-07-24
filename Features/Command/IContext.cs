@@ -15,5 +15,6 @@ namespace BonetIDE
         Queue<CommandComponents> commandList { get; }
         IdsDataStore rawIdsStore { get; }
         List<ICommand> commands { get; }
+        List<string> previousStack { get; }
     }
 }
