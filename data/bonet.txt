@@ -1436,6 +1436,396 @@ nói biếm 吶砭
 biếm hạ 砭下
 biếm giảm 砭減
 biếm thuỵ 砭墜
+biếm 貶
+
+biên 編
+biên ký 編記
+biên lấy 編𥙩
+biên nhận 編認
+biên chép 編劄
+biên vào số 編𠓨數
+biên cheo 編招
+biên kiết 編結
+
+biên 邊
+biên hoà 邊和
+biên lụa 邊縷
+biên thuỳ 邊陲
+tốt vô biên 卒無邊
+vô lượng vô biên 無量無邊
+trung biên 中邊
+
+biện 釆
+biện biệt 釆別
+
+biện 抃
+
+biện 辯
+biện luận 辯論
+biện minh bạch 辯明白
+
+biện 辨
+biện bạch 辨白
+biện thiệp 辯偼
+quan tham biện 官參辯
+quan biện lý 官辯理
+
+biện 卞
+đại biện 大卞
+biện lại 卞吏
+
+biến 變
+biến sắc 變色
+biến hoá 變化
+biến mất 變𡘮
+biến huyễn 變幻
+biến cải 變改
+thiên biến 天變
+
+biến 𨖠
+biển 𤅶
+biển thắm 𤅶瀋
+biển khơi 𤅶𣾺
+biển cả 𤅶哿
+biển hồ 𤅶湖
+bãi biển 𡓁𤅶
+bốn biển 𦊚𤅶
+đi biển 𠫾𤅶
+biển động 𤅶動
+biển lặng 𤅶朗
+đi qua biển 𠫾戈𤅶
+cá biển 𩵜𤅶
+biển bạc 𤅶薄
+
+biệng 捠
+
+biếng 丙
+biếng xem 丙󰏙
+biếng nói 丙吶
+làm biếng 濫丙
+làm biếng làm nhác 濫丙濫樂
+
+biệt 別
+biệt tin 別信
+biệt tích 別跡
+từ biệt 辞別
+bái biệt từ giã 拜別辞啫
+phân biệt 分別
+phân biệt tiên hậu 分別先後
+xa biệt 賒別
+biệt tài 別才
+
+biết 丿
+
+biết 別
+biết làm sao 別濫牢
+biết ơn 別恩
+biết đâu 別兜
+quen biết 涓別
+có biết không 固別空
+
+biêu 騼
+biêu ngựa 騼馭
+biêu cờ 騼旗
+biêu danh 騼名
+
+biệu 裒
+
+biếu 報
+cỗ biếu 古報
+phân biếu 分報
+biểu 摽
+biểu làm 摽濫
+khuyên biểu 勸摽
+dạy biểu 𠰺摽
+dễ biểu 易摽
+khó biểu 若摽
+
+biểu 表
+thủy biểu 水表
+
+bìm 砭
+con bìm bìm 昆砭砭
+dây bìm bìm 𦀊砭砭
+
+bỉm 𠹰
+
+bịn 𥾽
+bịn rịn 𥾽涷
+bịn yêu mến 𥾽腰勉
+
+binh 兵
+binh lính 兵另
+binh bộ 兵步
+binh thủy 兵水
+binh ngựa 兵馭
+binh dân 兵民
+binh vực 兵域
+bộ binh 部兵
+đóng binh 㨂兵
+điểm binh 點兵
+tổng binh 總兵
+lãnh binh 領兵
+tập binh 習兵
+việc binh 役兵
+bãi binh 罷兵
+binh bãi 兵𡓁
+
+binh 梹
+binh lang 梹榔
+
+bịnh 病
+chứng bịnh 症病
+mắc bịnh 縸病
+đã bịnh 㐌病
+bịnh nặng 病曩
+bịnh nghèo 病𠨪
+bịnh dịch 病疫
+bịnh cúm 病噤
+bịnh rét 病洌
+bịnh rét thấp 病洌濕
+bịnh thì khí 病時氣
+
+bính 丙
+năm bính thân 𢆥丙申
+bính 怲
+
+bính 柄
+mặc bính 默柄
+súng bính 銃柄
+quốc bính 國柄
+
+bình 平
+bình an 平安
+ninh bình 寧平
+bình thuận 平順
+bình định 平定
+thái bình 太平
+quảng bình 廣平
+bình hoà 平和
+tự bình sinh 自平生
+
+bình 瓶
+hoa bình 花瓶
+bình ấm 瓶蔭
+bình chè 瓶茶
+bình nước 瓶渃
+bình thủy 瓶水
+bình tích 瓶積
+bình tích thủy 瓶積水
+bình giỗ 瓶𠰍
+bình mực 瓶墨
+bình vôi 瓶𥔦
+bình điếu 瓶釣
+
+bình 泙
+
+bình 軿
+
+bình 評
+
+bỉnh 餅
+
+bịp 𪀐
+chim bìm bịp 𪀄砭𪀐
+
+bịt 𨧢
+bịt bát 𨧢鉢
+bịt khăn 𨧢巾
+bịt con mắt 𨧢昆𬑉
+bịt mũi 𨧢𪖫
+bịt tai 𨧢𦖻
+bịt choàng hầu 𨧢絖喉
+bo 甫
+cây bo bo 核甫甫
+giữ bo bo 㑏甫甫
+chạy bo bo 𧼋甫甫
+
+bọ 蜅
+con bọ đất 昆蜅坦
+bọ chét 蜅哳
+bọ cá 蜅𩵜
+bọ chó 蜅㹥
+bọ mắt 蜅𬑉
+sâu bọ 螻蜅
+
+bó 抪
+bó tay 抪拪
+bó lại 抪吏
+cột bó 橛抪
+một bó lúa 沒抪穭
+một bó củi 沒抪檜
+
+bò 𤙭
+bò đực 𤙭特
+bò cái 𤙭丐
+bò con 𤙭昆
+thịt bò 𦧘𤙭
+bò cạp 𤙭吸
+bò câu rừng 𤙭鴝棱
+bò câu nhà 𤙭鴝茹
+bò lên 𤙭𨖲
+cây bò cạp 核𤙭吸
+đánh bò cạp 打𤙭吸
+
+bõ 補
+bõ bàu chủ 補保主
+bõ đỡ đầu 補拖頭
+bõ nuôi 補餒
+
+bỏ 補
+bỏ quên 補涓
+bỏ sót 補率
+bỏ vạ 補禍
+bỏ việc 補役
+bỏ rời 補淶
+bỏ ra 補囉
+làm bỏ qua 濫補戈
+bỏ bèn chi 補卞之
+bỏ thói quen đi 補退涓𠫾
+bỏ đạo 補道
+bỏ vợ 補𡢼
+bỏ nhà 補茹
+
+bô 逋
+
+bô 甫
+lâm bô 林甫
+bô tàu 甫艚
+bộ 部
+chữ bộ 字部
+ngũ bộ 五部
+lục bộ thượng thơ 六部尚書
+lại bộ 吏部
+hình bộ 刑部
+hộ bộ 戶部
+binh bộ 兵部
+lễ bộ 禮部
+công bộ 工部
+quan lại bộ 官吏部
+giao cho bộ 交朱部
+một bộ bài 沒部牌
+một bộ nút áo 沒部𨨷襖
+
+bộ 哺
+
+bộ 䈬
+địa bộ 地䈬
+tu bộ 修䈬
+số bộ 數䈬
+bộ nhơn 䈬人
+bộ đinh 䈬丁
+bộ điền 䈬田
+tiểu tu 小修
+đại tu 大修
+
+bộ 捕
+ăn bộ 咹捕
+bắt bộ 打捕
+bộ hại 捕害
+bộ đạo 捕盜
+
+bộ 步
+đi bộ 𠫾步
+bộ hành 步行
+lính bộ 另步
+đánh bộ 打步
+coi bộ nó rầu 𩲡步奴愁
+làm bộ 濫步
+quá bộ 過步
+bố 布
+vải bố 𦀿布
+quan bố chánh 官布政
+bố thí 布施
+
+bồ 蒲
+bồ lúa 蒲穭
+bồ nhìn 蒲認
+bồ chì 蒲鈙
+nói xô bồ 吶摳蒲
+xô đi bồ lại 摳𠫾蒲吏
+bồ tiên 蒲鞭
+
+bồ 葡
+bồ đào 葡萄
+bồ đào tữu 葡萄酒
+
+bồ 菩
+bồ đề 菩提
+
+bổ 補
+bổ khuyết 補缺
+bổ thêm 補添
+bổ thường 補償
+bổ củi 補檜
+hàng bổ 行補
+tu bổ 修補
+thuốc bổ 𫇿補
+hậu bổ 候補
+
+bơ 巴
+bơ thờ 巴𰨂
+bơ vơ 巴撝
+bơ lơ 巴矑
+bơ ngơ 巴𤹿
+bơ bải 巴𡓁
+
+bợ 播
+bợ lấy 播𥙩
+
+bớ 播
+bớ bết 播別
+bớ sơ 播疏
+bắt bớ 抔播
+
+bớ 𡃓
+bớ mẹ 𡃓媄
+bớ con 𡃓昆
+bớ ai đi đó 𡃓埃𠫾妬
+bớ làng xóm ơi 𡃓廊坫𠲖
+bờ 坡
+bờ sông 坡瀧
+bờ ruộng 坡𤳽
+bờ cõi 坡𡎝
+lên bờ 𨖲坡
+ghé bờ 𥊘坡
+
+bỡ 把
+bỡ ngỡ 把語
+
+bở 彼
+khoai bở 圬彼
+vải bở 𦀿彼
+rách bở 𧞿彼
+
+bọc 襆
+bọc kín 襆謹
+vây bọc 圍襆
+bọc sách 襆冊
+
+bộc 僕
+chủ bộc 主僕
+nô bộc 奴僕
+xa bộc 車僕
+thái bộc 太僕
+thái bộc tự 太僕寺
+
+bộc 攴
+
+bốc 卜
+chiêm bốc 占卜
+bốc lấy 卜 𥙩
+bốc hốt 卜 忽
+ăn bốc 咹卜
+một bốc 沒卜
+
+bói 貝
+bói số 貝數
+bói khoa 貝科
+đi bói 𠫾貝
+thầy bói 柴貝
+sách bói 冊貝
+xoi bói 𢭻貝
 bôi 盃
 kính tữu nhứt bôi 敬酒一盃
 bôi mặt 盃𩈘
@@ -1683,6 +2073,202 @@ bỗng chốc 俸祝
 nói bỗng chắng 吶俸庄
 
 bỗng 捧
+bổng 菶
+
+bổng 俸
+bay bổng 𫅰俸
+
+bóp 𢯒
+bóp nặn 𢯒攤
+bóp mũi 𢯒𪖫
+bóp vú 𢯒乳
+bóp sữa 𢯒𣷱
+bóp nem 𢯒腩
+bóp bụng 𢯒䏾
+ma bóp 魔𢯒
+
+bộp 𠶙
+bắp bộp 𣔟𠶙
+vỗ tay bộp bộp 撫拪𠶙𠶙
+
+bốp 𠶙
+lốp bốp 𧀨𠶙
+
+bớp 抸
+bớp tai 抸𦖻
+bớp đầu 抸頭
+đánh bớp 打抸
+bớp nó một cái 抸奴沒丐
+
+bọt 浡
+hớt bọt 搳浡
+rượu bọt 𨢇浡
+bọt nước 浡渃
+bọt miệng 浡𠰘
+cái vá hớt bọt 丐播搳浡
+
+bột 𥹸
+bột mì 𥹸麵
+bột gạo 𥹸𥺊
+bột lọc 𥹸淥
+xay bột 槎𥹸
+đâm bột 鈂𥹸
+có nhiêu bột 固饒𥹸
+
+bột 荸
+
+bớt 扒
+bớt lời 扒𠅜
+bớt giận 扒𢚷
+bớt tay 扒拪
+ăn bớt 咹扒
+giảm bớt 減扒
+ngót bớt 𠮾扒
+bu 哺
+ruồi bu 𧋆哺
+
+bú 咘
+cho bú 朱咘
+bú mệ 咘媄
+đội bú 隊咘
+hết bú 歇咘
+thôi bú 崔咘
+nó còn bú 奴羣咘
+
+bù 蒲
+bù đi bù lại 蒲𠫾蒲吏
+bù lu 蒲盧
+khóc lu bù 哭盧蒲
+
+bư 巴
+thằng bư 倘巴
+
+bự 被
+
+bua 𤤰
+việc bua quan 役𤤰官
+phân bua 分𤤰
+
+búa 鈽
+búa rìu 鈽鐐
+búa nguyệt 鈽月
+chợ búa 𢄂鈽
+
+bùa 符
+bùa chú 符呪
+đeo bùa 刀符
+phải bùa 沛符
+vẽ bùa 𢽙符
+bùa ếm 符厭
+
+bủa 𥿠
+bủa lưới 𥿠䋥
+bủa câu 𥿠鉤
+bủa lòng dân 𥿠𢚸民
+giăng bủa 江𥿠
+bủa tằm 𥿠𧕽
+bứa 栢
+cây bứa 核栢
+trái bứa 𬃻栢
+
+bừa 耙
+bừa cào 耙搞
+cái bừa 丐耙
+cày bừa 𦓿耙
+
+bữa 𩛷
+một bữa 沒𩛷
+bữa ăn 𩛷咹
+bữa trưa 𩛷曥
+bữa tối 𩛷最
+mỗi bữa 每𩛷
+ăn ngoài bữa 咹外𩛷
+bữa nào 𩛷芇
+bữa nay 𩛷𫢩
+bữa trước 𩛷畧
+bữa sau 𩛷婁
+
+bửa 𨧆
+bửa ra làm hai 𨧆囉濫𠄩
+bửa cau 𨧆槹
+bửa củi 𨧆檜
+
+bực 愊
+bực mình lắm 愊命廩
+buồn bực 盆愊
+áo bực 襖愊
+
+bực 北
+
+bức 迫
+
+bức 幅
+bức tranh 幅𦱊
+bức màn 幅幔
+bức sáo 幅𥳓
+bức vách 幅壁
+bức bách 幅百
+làm bức 濫幅
+bức tức 幅息
+
+bụi 培
+
+bụi 蓓
+bụi gai 蓓荄
+chui bụi 錐蓓
+bụi tre 蓓椥
+đập bụi 搭蓓
+núp bụi núp bờ 納蓓納坡
+ngang qua bụi 昂戈蓓
+búi 貝
+làm búi đi 濫貝𠫾
+quở búi đi 𠵩貝𠫾
+
+bùi 裴
+trái bùi 𬃻裴
+bùi nhùi 裴𤈞
+
+bủi 貝
+bủi rủi 貝磊
+
+bún 𥻸
+ưa ăn bún 於咹𥻸
+
+bùn 𡎛
+bùn lấm 𡎛淋
+mắc bùn 縸𡎛
+lội bùn 𣷮𡎛
+vũng bùn 淎𡎛
+đất có bùn 坦固𡎛
+
+bủn 本
+bủn rủn 本敦
+
+bụng 䏾
+đau bụng 𤴬䏾
+bụng tốt 䏾卒
+bụng xấu 䏾丑
+kẻ lớn bụng 几吝䏾
+đói bụng 𩟡䏾
+
+búng 棒
+búng má 棒𦟐
+búng tay 棒拪
+
+bùng 蓬
+nghe lùng bùng 𦖑挵蓬
+lùng bùng trong tai 挵蓬冲𦖻
+
+bưng 挷
+ăn cốm bưng tai 咹𥽍挷𦖻
+
+buộc 𦄾
+buộc lưng 𦄾𦝄
+buộc trói 𦄾𦇒
+buộc dây 𦄾𦀊
+buộc phải làm 𦄾沛濫
+sự buộc 事𦄾
+buộc gốp 𦄾合
 huyễn 幻
 huyễn hoặc 幻感
 nói huyễn 吶幻
