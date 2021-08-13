@@ -28,7 +28,6 @@ namespace BonetIDE
                             // IDS sequence
                             if (stackValue[0] >= '\u2FF0' && stackValue[0] <= '\u2FFB')
                             {
-                                System.Console.WriteLine("here");
                                 context.resultList.Add(context.rawIdsStore.SearchCharacter(stackValue));
                             }
                             else
