@@ -35,5 +35,12 @@ namespace BonetIDE
                 .Select(mr => new CharacterReading(mr.Value.Split('/')[0], mr.Value.Split('/')[1]))
                 .ToList();
         }
+
+        public List<CharacterReading> SearchByInitial(string initial)
+        {
+            return result.MatchPrefix(initial)
+            .Select(mr => new CharacterReading(mr.Value.Split('/')[0], mr.Value.Split('/')[1]))
+            .ToList();
+        }
     }
 }

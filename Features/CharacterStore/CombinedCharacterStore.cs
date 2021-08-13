@@ -34,5 +34,17 @@ namespace BonetIDE
 
             return results.Distinct(new CharacterReadingComparer()).ToList();
         }
+
+        public List<CharacterReading> SearchByInitial(string initial)
+        {
+            List<CharacterReading> results = new();
+
+            foreach (ICharacterStore store in stores)
+            {
+                results.AddRange(store.SearchByInitial(initial));
+            }
+
+            return results.Distinct(new CharacterReadingComparer()).ToList();
+        }
     }
 }
