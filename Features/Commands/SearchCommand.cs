@@ -20,9 +20,21 @@ namespace BonetIDE
 
                     if (arguments[0] is IntArgument intArg)
                     {
-                        if (context.stack.IsValidStackReference(intArg.Value - 1))
+                        int stackRef = intArg.Value - 1;
+                        string stackValue = context.stack.ElementAt(stackRef);
+
+                        if (context.stack.IsValidStackReference(stackRef))
                         {
-                            search = context.stack.ElementAt(intArg.Value - 1);
+                            // IDS sequence
+                            if (stackValue[0] >= '\u2FF0' && stackValue[0] <= '\u2FFB')
+                            {
+                                System.Console.WriteLine("here");
+                                context.resultList.Add(context.rawIdsStore.SearchCharacter(stackValue));
+                            }
+                            else
+                            {
+                                search = stackValue;
+                            }
                         }
                     }
 
