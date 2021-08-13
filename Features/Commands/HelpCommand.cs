@@ -23,7 +23,7 @@ namespace BonetIDE
             // syntax: h
             Console.WriteLine("** Available commands **");
 
-            IEnumerable<ICommand> sorted = context.commands.OrderBy(a => a.GetType().Name);
+            IEnumerable<ICommand> sorted = context.commands.OrderBy(a => CommandNameHelper.GetCommandCode(a.GetType()));
 
             foreach (ICommand command in sorted)
             {
